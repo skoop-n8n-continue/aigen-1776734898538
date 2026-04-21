@@ -80,7 +80,11 @@
         "label": "Store Logo",
         "value": "assets/logos/QR_Logos_QR_Horizontal_White.svg",
         "meta": {
-          "accepted_formats": ["svg", "png", "jpg"],
+          "accepted_formats": [
+            "svg",
+            "png",
+            "jpg"
+          ],
           "path": "assets/logos/"
         }
       },
@@ -94,7 +98,7 @@
       "category_label": {
         "type": "text",
         "label": "Category Label (e.g. FLOWER)",
-        "value": "FLOWER"
+        "value": "Pre Rolls"
       },
       "show_leaf_icon": {
         "type": "boolean",
@@ -112,13 +116,17 @@
         "type": "number",
         "label": "Shake Price From ($)",
         "value": 12,
-        "meta": { "format": "currency" }
+        "meta": {
+          "format": "currency"
+        }
       },
       "price_to": {
         "type": "number",
         "label": "Shake Price To ($)",
         "value": 30,
-        "meta": { "format": "currency" }
+        "meta": {
+          "format": "currency"
+        }
       },
       "price_unit": {
         "type": "text",
@@ -135,12 +143,36 @@
       "type": "collection",
       "label": "Regular Deal Cards (Column 1 — Wide)",
       "item_schema": {
-        "id": { "type": "text", "label": "ID" },
-        "price_qualifier": { "type": "text", "label": "Price Qualifier (e.g. '2 for', 'Only $12 or')" },
-        "price_qualifier_size": { "type": "number", "label": "Price Qualifier Font Size (px)", "meta": { "format": "integer" } },
-        "price_main": { "type": "text", "label": "Main Price (use $ prefix, e.g. '$48' or '7 for $77')" },
-        "price_main_size": { "type": "number", "label": "Main Price Font Size (px)", "meta": { "format": "integer" } },
-        "footer_text": { "type": "text", "label": "Footer Text" }
+        "id": {
+          "type": "text",
+          "label": "ID"
+        },
+        "price_qualifier": {
+          "type": "text",
+          "label": "Price Qualifier (e.g. '2 for', 'Only $12 or')"
+        },
+        "price_qualifier_size": {
+          "type": "number",
+          "label": "Price Qualifier Font Size (px)",
+          "meta": {
+            "format": "integer"
+          }
+        },
+        "price_main": {
+          "type": "text",
+          "label": "Main Price (use $ prefix, e.g. '$48' or '7 for $77')"
+        },
+        "price_main_size": {
+          "type": "number",
+          "label": "Main Price Font Size (px)",
+          "meta": {
+            "format": "integer"
+          }
+        },
+        "footer_text": {
+          "type": "text",
+          "label": "Footer Text"
+        }
       },
       "value": [
         {
@@ -173,22 +205,70 @@
       "type": "collection",
       "label": "Bags for Column 1 Cards",
       "item_schema": {
-        "id": { "type": "text", "label": "ID" },
-        "card": { "type": "text", "label": "Card ID (references col1_cards)" },
-        "brand_name": { "type": "text", "label": "Brand Name Line 1" },
-        "brand_name_line2": { "type": "text", "label": "Brand Name Line 2 (optional)" },
-        "weight": { "type": "text", "label": "Weight Label (e.g. 3.5G)" },
-        "bag_gradient": { "type": "text", "label": "Bag Background CSS Gradient" },
-        "bag_width": { "type": "number", "label": "Bag Width (px)", "meta": { "format": "integer" } },
-        "bag_height": { "type": "number", "label": "Bag Height (px)", "meta": { "format": "integer" } },
-        "label_bg": { "type": "text", "label": "Brand Label Background CSS" },
-        "label_text_color": { "type": "text", "label": "Brand Label Text Color" },
-        "weight_label_bg": { "type": "text", "label": "Weight Label Background CSS" },
-        "weight_text_color": { "type": "text", "label": "Weight Label Text Color" },
+        "id": {
+          "type": "text",
+          "label": "ID"
+        },
+        "card": {
+          "type": "text",
+          "label": "Card ID (references col1_cards)"
+        },
+        "brand_name": {
+          "type": "text",
+          "label": "Brand Name Line 1"
+        },
+        "brand_name_line2": {
+          "type": "text",
+          "label": "Brand Name Line 2 (optional)"
+        },
+        "weight": {
+          "type": "text",
+          "label": "Weight Label (e.g. 3.5G)"
+        },
+        "bag_gradient": {
+          "type": "text",
+          "label": "Bag Background CSS Gradient"
+        },
+        "bag_width": {
+          "type": "number",
+          "label": "Bag Width (px)",
+          "meta": {
+            "format": "integer"
+          }
+        },
+        "bag_height": {
+          "type": "number",
+          "label": "Bag Height (px)",
+          "meta": {
+            "format": "integer"
+          }
+        },
+        "label_bg": {
+          "type": "text",
+          "label": "Brand Label Background CSS"
+        },
+        "label_text_color": {
+          "type": "text",
+          "label": "Brand Label Text Color"
+        },
+        "weight_label_bg": {
+          "type": "text",
+          "label": "Weight Label Background CSS"
+        },
+        "weight_text_color": {
+          "type": "text",
+          "label": "Weight Label Text Color"
+        },
         "bag_style": {
           "type": "enum",
           "label": "Bag Visual Style",
-          "meta": { "options": ["standard", "diagonal_stripe", "paper_texture"] }
+          "meta": {
+            "options": [
+              "standard",
+              "diagonal_stripe",
+              "paper_texture"
+            ]
+          }
         }
       },
       "value": [
@@ -288,16 +368,39 @@
       "type": "collection",
       "label": "Special Deal Cards (Column 2 — Narrow)",
       "item_schema": {
-        "id": { "type": "text", "label": "ID" },
+        "id": {
+          "type": "text",
+          "label": "ID"
+        },
         "card_type": {
           "type": "enum",
           "label": "Card Type",
-          "meta": { "options": ["standard_2bag", "percent_off"] }
+          "meta": {
+            "options": [
+              "standard_2bag",
+              "percent_off"
+            ]
+          }
         },
-        "price_qualifier": { "type": "text", "label": "Price Qualifier (leave empty if not needed)" },
-        "price_main": { "type": "text", "label": "Main Price / Headline (use \\n for line break)" },
-        "price_main_size": { "type": "number", "label": "Headline Font Size (px)", "meta": { "format": "integer" } },
-        "footer_text": { "type": "text", "label": "Footer Text" }
+        "price_qualifier": {
+          "type": "text",
+          "label": "Price Qualifier (leave empty if not needed)"
+        },
+        "price_main": {
+          "type": "text",
+          "label": "Main Price / Headline (use \\n for line break)"
+        },
+        "price_main_size": {
+          "type": "number",
+          "label": "Headline Font Size (px)",
+          "meta": {
+            "format": "integer"
+          }
+        },
+        "footer_text": {
+          "type": "text",
+          "label": "Footer Text"
+        }
       },
       "value": [
         {
@@ -322,25 +425,80 @@
       "type": "collection",
       "label": "Bags for Column 2 Cards",
       "item_schema": {
-        "id": { "type": "text", "label": "ID" },
-        "card": { "type": "text", "label": "Card ID (references col2_cards)" },
-        "brand_name": { "type": "text", "label": "Brand Name Line 1" },
-        "brand_name_line2": { "type": "text", "label": "Brand Name Line 2 (optional)" },
-        "weight": { "type": "text", "label": "Weight Label (e.g. 3.5G)" },
-        "bag_gradient": { "type": "text", "label": "Bag Background CSS Gradient" },
-        "bag_width": { "type": "number", "label": "Bag Width (px)", "meta": { "format": "integer" } },
-        "bag_height": { "type": "number", "label": "Bag Height (px)", "meta": { "format": "integer" } },
-        "label_bg": { "type": "text", "label": "Brand Label Background CSS" },
-        "label_text_color": { "type": "text", "label": "Brand Label Text Color" },
-        "weight_label_bg": { "type": "text", "label": "Weight Label Background CSS" },
-        "weight_text_color": { "type": "text", "label": "Weight Label Text Color" },
+        "id": {
+          "type": "text",
+          "label": "ID"
+        },
+        "card": {
+          "type": "text",
+          "label": "Card ID (references col2_cards)"
+        },
+        "brand_name": {
+          "type": "text",
+          "label": "Brand Name Line 1"
+        },
+        "brand_name_line2": {
+          "type": "text",
+          "label": "Brand Name Line 2 (optional)"
+        },
+        "weight": {
+          "type": "text",
+          "label": "Weight Label (e.g. 3.5G)"
+        },
+        "bag_gradient": {
+          "type": "text",
+          "label": "Bag Background CSS Gradient"
+        },
+        "bag_width": {
+          "type": "number",
+          "label": "Bag Width (px)",
+          "meta": {
+            "format": "integer"
+          }
+        },
+        "bag_height": {
+          "type": "number",
+          "label": "Bag Height (px)",
+          "meta": {
+            "format": "integer"
+          }
+        },
+        "label_bg": {
+          "type": "text",
+          "label": "Brand Label Background CSS"
+        },
+        "label_text_color": {
+          "type": "text",
+          "label": "Brand Label Text Color"
+        },
+        "weight_label_bg": {
+          "type": "text",
+          "label": "Weight Label Background CSS"
+        },
+        "weight_text_color": {
+          "type": "text",
+          "label": "Weight Label Text Color"
+        },
         "bag_style": {
           "type": "enum",
           "label": "Bag Visual Style",
-          "meta": { "options": ["standard", "diagonal_stripe", "paper_texture", "rainbow_band"] }
+          "meta": {
+            "options": [
+              "standard",
+              "diagonal_stripe",
+              "paper_texture",
+              "rainbow_band"
+            ]
+          }
         },
-        "rainbow_text": { "type": "text", "label": "Rainbow Band Text (rainbow_band style only)" },
-        "rainbow_subtext": { "type": "text", "label": "Rainbow Band Subtext (rainbow_band style only)" }
+        "rainbow_text": {
+          "type": "text",
+          "label": "Rainbow Band Text (rainbow_band style only)"
+        },
+        "rainbow_subtext": {
+          "type": "text",
+          "label": "Rainbow Band Subtext (rainbow_band style only)"
+        }
       },
       "value": [
         {
@@ -407,26 +565,77 @@
       "type": "collection",
       "label": "Bulk Section Products",
       "item_schema": {
-        "id": { "type": "text", "label": "ID" },
-        "price_qualifier": { "type": "text", "label": "Price Qualifier" },
-        "price_main": { "type": "text", "label": "Main Price (use $ prefix)" },
-        "footer_text": { "type": "text", "label": "Footer Text" },
+        "id": {
+          "type": "text",
+          "label": "ID"
+        },
+        "price_qualifier": {
+          "type": "text",
+          "label": "Price Qualifier"
+        },
+        "price_main": {
+          "type": "text",
+          "label": "Main Price (use $ prefix)"
+        },
+        "footer_text": {
+          "type": "text",
+          "label": "Footer Text"
+        },
         "product_type": {
           "type": "enum",
           "label": "Product Visual Type",
-          "meta": { "options": ["bag_large_letter", "bag_text_centered", "bag_italic_text"] }
+          "meta": {
+            "options": [
+              "bag_large_letter",
+              "bag_text_centered",
+              "bag_italic_text"
+            ]
+          }
         },
-        "bag_gradient": { "type": "text", "label": "Bag Background CSS Gradient" },
-        "brand_name": { "type": "text", "label": "Brand / Product Name Line 1" },
-        "brand_name_line2": { "type": "text", "label": "Brand / Product Name Line 2" },
-        "weight": { "type": "text", "label": "Weight Label (e.g. 28G)" },
-        "weight_label_full": { "type": "text", "label": "Full Weight Label Text on Bag (e.g. 'ZONES 28G')" },
-        "large_letter": { "type": "text", "label": "Large Background Letter (bag_large_letter type)" },
-        "large_letter_color": { "type": "text", "label": "Large Letter Color CSS" },
-        "subtext": { "type": "text", "label": "Subtext Below Brand Name" },
-        "subtext_color": { "type": "text", "label": "Subtext Color CSS" },
-        "weight_label_bg": { "type": "text", "label": "Weight Label Background CSS" },
-        "weight_text_color": { "type": "text", "label": "Weight Label Text Color" }
+        "bag_gradient": {
+          "type": "text",
+          "label": "Bag Background CSS Gradient"
+        },
+        "brand_name": {
+          "type": "text",
+          "label": "Brand / Product Name Line 1"
+        },
+        "brand_name_line2": {
+          "type": "text",
+          "label": "Brand / Product Name Line 2"
+        },
+        "weight": {
+          "type": "text",
+          "label": "Weight Label (e.g. 28G)"
+        },
+        "weight_label_full": {
+          "type": "text",
+          "label": "Full Weight Label Text on Bag (e.g. 'ZONES 28G')"
+        },
+        "large_letter": {
+          "type": "text",
+          "label": "Large Background Letter (bag_large_letter type)"
+        },
+        "large_letter_color": {
+          "type": "text",
+          "label": "Large Letter Color CSS"
+        },
+        "subtext": {
+          "type": "text",
+          "label": "Subtext Below Brand Name"
+        },
+        "subtext_color": {
+          "type": "text",
+          "label": "Subtext Color CSS"
+        },
+        "weight_label_bg": {
+          "type": "text",
+          "label": "Weight Label Background CSS"
+        },
+        "weight_text_color": {
+          "type": "text",
+          "label": "Weight Label Text Color"
+        }
       },
       "value": [
         {
@@ -496,28 +705,85 @@
       "type": "collection",
       "label": "Infused Section Products",
       "item_schema": {
-        "id": { "type": "text", "label": "ID" },
-        "price_qualifier": { "type": "text", "label": "Price Qualifier" },
-        "price_main": { "type": "text", "label": "Main Price (use $ prefix)" },
-        "footer_text": { "type": "text", "label": "Footer Text" },
+        "id": {
+          "type": "text",
+          "label": "ID"
+        },
+        "price_qualifier": {
+          "type": "text",
+          "label": "Price Qualifier"
+        },
+        "price_main": {
+          "type": "text",
+          "label": "Main Price (use $ prefix)"
+        },
+        "footer_text": {
+          "type": "text",
+          "label": "Footer Text"
+        },
         "product_type": {
           "type": "enum",
           "label": "Product Visual Type",
-          "meta": { "options": ["bag_branded", "jar_red", "badge_circle"] }
+          "meta": {
+            "options": [
+              "bag_branded",
+              "jar_red",
+              "badge_circle"
+            ]
+          }
         },
-        "container_gradient": { "type": "text", "label": "Container/Bag Background CSS Gradient" },
-        "brand_name": { "type": "text", "label": "Brand Name (displayed above product name)" },
-        "product_name": { "type": "text", "label": "Product Name Line 1" },
-        "product_name_line2": { "type": "text", "label": "Product Name Line 2" },
-        "weight": { "type": "text", "label": "Weight Label" },
-        "weight_color": { "type": "text", "label": "Weight Color CSS (jar type)" },
-        "label_bg": { "type": "text", "label": "Inner Label Background CSS" },
-        "label_text_color": { "type": "text", "label": "Inner Label Text Color" },
-        "sub_label": { "type": "text", "label": "Sub Label Text (e.g. INFUSED)" },
-        "sub_label_color": { "type": "text", "label": "Sub Label Color CSS" },
-        "badge_accent_color": { "type": "text", "label": "Badge Accent / Divider Color (badge_circle type)" },
-        "weight_label_bg": { "type": "text", "label": "Weight Label Background CSS (bag_branded type)" },
-        "weight_text_color": { "type": "text", "label": "Weight Label Text Color (bag_branded type)" }
+        "container_gradient": {
+          "type": "text",
+          "label": "Container/Bag Background CSS Gradient"
+        },
+        "brand_name": {
+          "type": "text",
+          "label": "Brand Name (displayed above product name)"
+        },
+        "product_name": {
+          "type": "text",
+          "label": "Product Name Line 1"
+        },
+        "product_name_line2": {
+          "type": "text",
+          "label": "Product Name Line 2"
+        },
+        "weight": {
+          "type": "text",
+          "label": "Weight Label"
+        },
+        "weight_color": {
+          "type": "text",
+          "label": "Weight Color CSS (jar type)"
+        },
+        "label_bg": {
+          "type": "text",
+          "label": "Inner Label Background CSS"
+        },
+        "label_text_color": {
+          "type": "text",
+          "label": "Inner Label Text Color"
+        },
+        "sub_label": {
+          "type": "text",
+          "label": "Sub Label Text (e.g. INFUSED)"
+        },
+        "sub_label_color": {
+          "type": "text",
+          "label": "Sub Label Color CSS"
+        },
+        "badge_accent_color": {
+          "type": "text",
+          "label": "Badge Accent / Divider Color (badge_circle type)"
+        },
+        "weight_label_bg": {
+          "type": "text",
+          "label": "Weight Label Background CSS (bag_branded type)"
+        },
+        "weight_text_color": {
+          "type": "text",
+          "label": "Weight Label Text Color (bag_branded type)"
+        }
       },
       "value": [
         {
