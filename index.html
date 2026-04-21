@@ -4,7 +4,7 @@
   <link rel="manifest" href="./manifest.json">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=1920">
-  <title>Quality Roots - Flower Deals</title>
+  <title>Loading...</title>
   <style>
     @font-face {
       font-family: 'Geomanist';
@@ -33,9 +33,16 @@
       width: 1920px;
       height: 1080px;
       overflow: hidden;
-      background: #1a2820;
       font-family: 'Geomanist', 'Arial Black', sans-serif;
     }
+
+    #app-container {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      width: 1920px;
+      height: 1080px;
+    }
+    #app-container.loaded { opacity: 1; }
 
     /* ═══════════ INTRO SCREEN ═══════════ */
     #intro-screen {
@@ -71,7 +78,6 @@
     .bg-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(16, 26, 18, 0.88);
       z-index: 1;
     }
 
@@ -130,7 +136,6 @@
       display: flex;
       gap: 24px;
       padding: 0 16px 28px;
-
       min-height: 0;
     }
 
@@ -171,7 +176,6 @@
     }
 
     .section-header {
-      background: #1a2820;
       padding: 16px 24px 12px;
       text-align: center;
       flex-shrink: 0;
@@ -179,13 +183,11 @@
     .section-header h2 {
       font-weight: 900;
       font-size: 52px;
-      color: #a8c37e;
       letter-spacing: 5px;
     }
 
     .section-cards {
       flex: 1;
-      background: #1a2820;
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -196,7 +198,6 @@
     /* ─── PRODUCT CARD ─── */
     .card {
       flex: 1;
-      background: #EBE5D3;
       border-radius: 24px;
       display: flex;
       flex-direction: column;
@@ -217,10 +218,8 @@
     .price-qualifier {
       display: block;
       font-weight: 600;
-      font-size: 34px;
       letter-spacing: -0.5px;
       margin-bottom: -4px;
-      color: #253529;
       line-height: 1.15;
       position: relative;
       z-index: 2;
@@ -228,7 +227,6 @@
     .price-main {
       display: block;
       font-weight: 900;
-      color: #253529;
       line-height: 0.88;
       letter-spacing: -3px;
       position: relative;
@@ -250,7 +248,6 @@
 
     /* Card footer */
     .card-footer {
-      background: #253529;
       padding: 14px 20px;
       flex-shrink: 0;
       border-radius: 0 0 24px 24px;
@@ -258,10 +255,8 @@
     .card-footer p {
       font-weight: 600;
       font-size: 16px;
-      letter-spacing: 1px;
-      color: #EBE5D3;
-      text-transform: uppercase;
       letter-spacing: 0.5px;
+      text-transform: uppercase;
       text-align: center;
       line-height: 1.2;
     }
@@ -279,29 +274,22 @@
       position: relative;
       overflow: hidden;
     }
-    /* Bag top seal/crimp */
     .bag::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: 14px;
       background: rgba(0,0,0,0.28);
       border-radius: 8px 8px 0 0;
     }
-    /* Highlight sheen */
     .bag::after {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 40%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 40%; height: 100%;
       background: linear-gradient(90deg, rgba(255,255,255,0.07) 0%, transparent 100%);
       pointer-events: none;
     }
-
     .bag-label {
       background: rgba(255,255,255,0.95);
       border-radius: 4px;
@@ -311,14 +299,9 @@
       position: relative;
       z-index: 2;
     }
-
-    /* Center brand mark inside bag */
     .bag-brand {
       position: absolute;
-      top: 16px;
-      left: 0;
-      right: 0;
-      bottom: 32px;
+      top: 16px; left: 0; right: 0; bottom: 32px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -330,12 +313,9 @@
     /* ─── SHAKE CARD ─── */
     .shake-blob {
       position: absolute;
-      top: 50%;
-      left: 45%;
+      top: 50%; left: 45%;
       transform: translate(-50%, -50%);
-      width: 184px;
-      height: 168px;
-      background: #253529;
+      width: 184px; height: 168px;
       border-radius: 48% 52% 46% 54% / 50% 46% 54% 50%;
       display: flex;
       flex-direction: column;
@@ -363,7 +343,6 @@
     .blob-unit {
       font-weight: 600;
       font-size: 12.5px;
-      color: #a8c37e;
       text-transform: uppercase;
       letter-spacing: 2px;
       margin-top: 4px;
@@ -384,476 +363,438 @@
   </style>
 </head>
 <body>
+<div id="app-container">
 
-<!-- INTRO VIDEO -->
-<div id="intro-screen">
-  <video id="intro-video" autoplay muted playsinline>
-    <source src="https://skoop-general.s3.us-east-1.amazonaws.com/1776735063166-template_blank_with_intro.mp4" type="video/mp4">
-  </video>
-</div>
+  <!-- INTRO VIDEO -->
+  <div id="intro-screen">
+    <video id="intro-video" autoplay muted playsinline>
+    </video>
+  </div>
 
-<!-- DEALS GRID -->
-<div id="deals-screen">
-  <video id="bg-video" muted loop playsinline>
-    <source src="https://skoop-general.s3.us-east-1.amazonaws.com/1776735063166-template_blank_with_intro.mp4" type="video/mp4">
-  </video>
-  <div class="bg-overlay"></div>
-  <div class="bg-texture"></div>
+  <!-- DEALS GRID -->
+  <div id="deals-screen">
+    <video id="bg-video" muted loop playsinline></video>
+    <div class="bg-overlay"></div>
+    <div class="bg-texture"></div>
 
-  <div id="content">
+    <div id="content">
+      <!-- HEADER -->
+      <header class="header">
+        <img id="qr-logo" src="" class="qr-logo" alt="Store Logo">
+        <div class="flower-badge" id="flower-badge">
+          <svg id="flower-icon" class="flower-icon" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+            <path d="M25 5 C21 13 17 24 18 36 C19 43 22 48 25 50 C28 48 31 43 32 36 C33 24 29 13 25 5Z" fill="#a8c37e"/>
+            <path d="M23 17 C17 9 9 8 5 12 C7 20 15 23 21 19Z" fill="#a8c37e"/>
+            <path d="M27 17 C33 9 41 8 45 12 C43 20 35 23 29 19Z" fill="#a8c37e"/>
+            <path d="M20 27 C13 22 5 24 2 30 C5 37 14 37 19 31Z" fill="#a8c37e"/>
+            <path d="M30 27 C37 22 45 24 48 30 C45 37 36 37 31 31Z" fill="#a8c37e"/>
+            <path d="M21 37 C13 34 6 39 5 46 C11 49 19 47 22 40Z" fill="#a8c37e"/>
+            <path d="M29 37 C37 34 44 39 45 46 C39 49 31 47 28 40Z" fill="#a8c37e"/>
+          </svg>
+          <span class="flower-text" id="category-label"></span>
+        </div>
+      </header>
 
-    <!-- HEADER -->
-    <header class="header">
-      <img src="assets/logos/QR_Logos_QR_Horizontal_White.svg" class="qr-logo" alt="Quality Roots">
-      <div class="flower-badge">
-        <svg class="flower-icon" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-          <path d="M25 5 C21 13 17 24 18 36 C19 43 22 48 25 50 C28 48 31 43 32 36 C33 24 29 13 25 5Z" fill="#a8c37e"/>
-          <path d="M23 17 C17 9 9 8 5 12 C7 20 15 23 21 19Z" fill="#a8c37e"/>
-          <path d="M27 17 C33 9 41 8 45 12 C43 20 35 23 29 19Z" fill="#a8c37e"/>
-          <path d="M20 27 C13 22 5 24 2 30 C5 37 14 37 19 31Z" fill="#a8c37e"/>
-          <path d="M30 27 C37 22 45 24 48 30 C45 37 36 37 31 31Z" fill="#a8c37e"/>
-          <path d="M21 37 C13 34 6 39 5 46 C11 49 19 47 22 40Z" fill="#a8c37e"/>
-          <path d="M29 37 C37 34 44 39 45 46 C39 49 31 47 28 40Z" fill="#a8c37e"/>
-        </svg>
-        <span class="flower-text">FLOWER</span>
+      <!-- GRID -->
+      <div class="grid">
+        <!-- ═══ REGULAR DEALS ═══ -->
+        <div class="col-regular">
+          <div class="col-1" id="col-1"></div>
+          <div class="col-2" id="col-2"></div>
+        </div>
+
+        <!-- ═══ BULK + INFUSED ═══ -->
+        <div class="col-sections" id="col-sections"></div>
       </div>
-    </header>
+    </div>
+  </div>
 
-    <!-- GRID -->
-    <div class="grid">
-
-      <!-- ═══ REGULAR DEALS ═══ -->
-      <div class="col-regular">
-
-        <!-- COL 1 ─── Wide regular deals -->
-        <div class="col-1">
-
-          <!-- Card: Only $12 or / 7 for $77 -->
-          <div class="card">
-            <div class="card-body">
-              <div class="price-qualifier" style="font-size:22px;line-height:1.25;">Only <sup style="font-size:70%;vertical-align:super;">$</sup>12 or</div>
-              <div class="price-main" style="font-size:80px;">7 for <sup class="sup">$</sup>77</div>
-              <div class="img-area">
-                <!-- Common Citizen: dark purple bag -->
-                <div class="bag" style="width:106px;height:250px;background:linear-gradient(170deg,#1e0840 0%,#331060 30%,#481888 60%,#2c0a58 100%);">
-                  <div class="bag-brand">
-                    <div style="background:rgba(255,255,255,0.88);border-radius:5px;padding:7px 8px;width:100%;text-align:center;">
-                      <div style="font-size:9px;font-weight:900;color:#2a0a5a;letter-spacing:0.5px;line-height:1.5;text-transform:lowercase;">common<br>citizen</div>
-                    </div>
-                  </div>
-                  <div class="bag-label">
-                    <div style="font-size:6.5px;font-weight:700;color:#2a0a5a;text-transform:uppercase;">3.5G</div>
-                  </div>
-                </div>
-                <!-- Euphoria: pink/fuchsia bag -->
-                <div class="bag" style="width:92px;height:224px;background:linear-gradient(170deg,#780e5c 0%,#aa2678 35%,#cc4898 65%,#8a1468 100%);">
-                  <div class="bag-brand">
-                    <div style="background:rgba(255,255,255,0.9);border-radius:5px;padding:7px 6px;width:100%;text-align:center;">
-                      <div style="font-size:8.5px;font-weight:900;color:#640844;text-transform:uppercase;letter-spacing:0.3px;">EUPHORIA</div>
-                    </div>
-                  </div>
-                  <div class="bag-label">
-                    <div style="font-size:6.5px;font-weight:700;color:#640844;text-transform:uppercase;">3.5G</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer"><p>Common Citizen 3.5G &amp; Euphoria 3.5G</p></div>
-          </div>
-
-          <!-- Card: 2 for $48 -->
-          <div class="card">
-            <div class="card-body">
-              <div class="price-qualifier">2 for</div>
-              <div class="price-main" style="font-size:102px;"><sup class="sup">$</sup>48</div>
-              <div class="img-area">
-                <!-- Michigrown: light silver-blue bag with diagonal texture -->
-                <div class="bag" style="width:110px;height:250px;background:linear-gradient(170deg,#98b8cc 0%,#72a0bc 35%,#5080a8 65%,#386898 100%);">
-                  <!-- Diagonal stripe texture -->
-                  <div style="position:absolute;inset:0;opacity:0.18;background:repeating-linear-gradient(135deg,#fff 0px,#fff 3px,transparent 3px,transparent 18px);border-radius:8px 8px 6px 6px;"></div>
-                  <div class="bag-brand">
-                    <div style="background:rgba(255,255,255,0.9);border-radius:5px;padding:8px 8px;width:100%;text-align:center;">
-                      <div style="font-size:10px;font-weight:900;color:#1e3a58;text-transform:uppercase;letter-spacing:0.3px;line-height:1.4;">MICHI<br>GROWN</div>
-                    </div>
-                  </div>
-                  <div class="bag-label">
-                    <div style="font-size:6.5px;font-weight:700;color:#1e3a58;text-transform:uppercase;">3.5G</div>
-                  </div>
-                </div>
-                <!-- ProGro: black bag with gold/yellow label -->
-                <div class="bag" style="width:96px;height:224px;background:linear-gradient(170deg,#080808 0%,#141414 40%,#1e1e1e 100%);">
-                  <div class="bag-brand">
-                    <div style="background:linear-gradient(135deg,#d4a020,#f0c040,#b88010);border-radius:5px;padding:8px 8px;width:100%;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.4);">
-                      <div style="font-size:11px;font-weight:900;color:#000;text-transform:uppercase;letter-spacing:1px;">PROGRO</div>
-                    </div>
-                  </div>
-                  <div class="bag-label" style="background:#c09020;">
-                    <div style="font-size:6.5px;font-weight:700;color:#000;text-transform:uppercase;">3.5G</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer"><p>Michigrown 3.5G &amp; ProGro 3.5G</p></div>
-          </div>
-
-          <!-- Card: 3 for $42 -->
-          <div class="card">
-            <div class="card-body">
-              <div class="price-qualifier">3 for</div>
-              <div class="price-main" style="font-size:102px;"><sup class="sup">$</sup>42</div>
-              <div class="img-area">
-                <!-- Grown Rogue: dark midnight navy bag -->
-                <div class="bag" style="width:108px;height:248px;background:linear-gradient(170deg,#060c18 0%,#0e1c30 35%,#162440 65%,#0a1020 100%);">
-                  <div class="bag-brand">
-                    <div style="background:rgba(255,255,255,0.88);border-radius:5px;padding:7px 8px;width:100%;text-align:center;">
-                      <div style="font-size:9px;font-weight:900;color:#060c18;text-transform:uppercase;letter-spacing:0.3px;line-height:1.4;">GROWN<br>ROGUE</div>
-                      <!-- Arrow chevrons under name -->
-                      <div style="margin-top:3px;display:flex;justify-content:center;gap:2px;">
-                        <div style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid #0a1828;"></div>
-                        <div style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid #0a1828;"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="bag-label">
-                    <div style="font-size:6.5px;font-weight:700;color:#0a1828;text-transform:uppercase;">3.5G</div>
-                  </div>
-                </div>
-                <!-- Wise Guys: bright magenta/hot-pink bag -->
-                <div class="bag" style="width:94px;height:222px;background:linear-gradient(170deg,#cc1a58 0%,#e83880 35%,#f055a0 65%,#b81048 100%);">
-                  <div class="bag-brand">
-                    <div style="background:rgba(255,255,255,0.9);border-radius:5px;padding:7px 7px;width:100%;text-align:center;">
-                      <div style="font-size:9px;font-weight:900;color:#8a0830;text-transform:uppercase;letter-spacing:0.3px;line-height:1.35;">WISE<br>GUYS</div>
-                    </div>
-                  </div>
-                  <div class="bag-label">
-                    <div style="font-size:6.5px;font-weight:700;color:#8a0830;text-transform:uppercase;">3.5G</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer"><p>Wise Guys 3.5G &amp; Grown Rogue 3.5G</p></div>
-          </div>
-
-        </div><!-- /col-1 -->
-
-        <!-- COL 2 ─── Narrow special deals -->
-        <div class="col-2">
-
-          <!-- Shake card — oval sticker with herb pile -->
-          <div class="card">
-            <div class="card-body" style="overflow:visible;position:relative;">
-              <!-- Herb/shake pile SVG -->
-              <svg viewBox="0 0 290 270" style="position:absolute;right:-22px;top:-18px;width:224px;height:248px;z-index:1;" xmlns="http://www.w3.org/2000/svg">
-                <!-- Shadow -->
-                <ellipse cx="152" cy="220" rx="85" ry="22" fill="rgba(0,0,0,0.28)" opacity="0.7"/>
-                <!-- Main herb mass base layers -->
-                <ellipse cx="152" cy="198" rx="82" ry="50" fill="#2e2006" opacity="0.95"/>
-                <ellipse cx="160" cy="192" rx="72" ry="42" fill="#4a3210" opacity="0.9"/>
-                <ellipse cx="144" cy="196" rx="70" ry="44" fill="#3e2a0c" opacity="0.8"/>
-                <!-- Upper lighter layer -->
-                <ellipse cx="152" cy="180" rx="64" ry="34" fill="#6e5018" opacity="0.85"/>
-                <ellipse cx="162" cy="175" rx="52" ry="28" fill="#7e5e20" opacity="0.8"/>
-                <!-- Bud clusters -->
-                <circle cx="132" cy="174" r="15" fill="#5e4014" opacity="0.85"/>
-                <circle cx="154" cy="166" r="12" fill="#6e5018" opacity="0.8"/>
-                <circle cx="176" cy="172" r="14" fill="#7a5c1c" opacity="0.85"/>
-                <circle cx="190" cy="180" r="11" fill="#6a4e14" opacity="0.75"/>
-                <circle cx="120" cy="182" r="11" fill="#524012" opacity="0.8"/>
-                <circle cx="168" cy="162" r="10" fill="#8a6a22" opacity="0.75"/>
-                <circle cx="142" cy="164" r="9" fill="#7e6020" opacity="0.7"/>
-                <!-- Green highlights -->
-                <circle cx="132" cy="172" r="5.5" fill="#4e7236" opacity="0.55"/>
-                <circle cx="155" cy="164" r="4.5" fill="#487030" opacity="0.5"/>
-                <circle cx="176" cy="170" r="5" fill="#426830" opacity="0.45"/>
-                <circle cx="143" cy="162" r="4" fill="#3c6028" opacity="0.45"/>
-                <!-- Scattered loose pieces -->
-                <ellipse cx="110" cy="190" rx="9" ry="5.5" fill="#5a4012" opacity="0.7" transform="rotate(28 110 190)"/>
-                <ellipse cx="204" cy="184" rx="8" ry="4.5" fill="#4e3808" opacity="0.65" transform="rotate(-20 204 184)"/>
-                <ellipse cx="104" cy="178" rx="7" ry="4" fill="#6a5016" opacity="0.6" transform="rotate(42 104 178)"/>
-                <ellipse cx="210" cy="172" rx="5.5" ry="3" fill="#5a4010" opacity="0.55" transform="rotate(-32 210 172)"/>
-                <!-- Orange trichomes -->
-                <circle cx="150" cy="170" r="3.5" fill="#c89020" opacity="0.65"/>
-                <circle cx="166" cy="164" r="3" fill="#d49828" opacity="0.6"/>
-                <circle cx="137" cy="166" r="3" fill="#b88018" opacity="0.55"/>
-                <circle cx="175" cy="174" r="2.5" fill="#c08018" opacity="0.55"/>
-                <!-- Upward stems -->
-                <path d="M148 168 C150 138 152 110 154 82" stroke="#3e6828" stroke-width="3" fill="none" opacity="0.7"/>
-                <path d="M163 170 C168 140 174 112 180 84" stroke="#346020" stroke-width="2.4" fill="none" opacity="0.6"/>
-                <path d="M134 172 C130 142 126 114 122 86" stroke="#447028" stroke-width="2.2" fill="none" opacity="0.55"/>
-                <path d="M173 167 C180 136 186 108 192 78" stroke="#3a5c20" stroke-width="2" fill="none" opacity="0.5"/>
-                <path d="M120 178 C112 148 108 118 104 88" stroke="#306018" stroke-width="1.8" fill="none" opacity="0.45"/>
-                <!-- Leaf nodes -->
-                <ellipse cx="152" cy="118" rx="18" ry="8" fill="#487838" opacity="0.65" transform="rotate(-28 152 118)"/>
-                <ellipse cx="157" cy="96" rx="15" ry="7" fill="#427030" opacity="0.6" transform="rotate(22 157 96)"/>
-                <ellipse cx="126" cy="112" rx="16" ry="7" fill="#3e6828" opacity="0.55" transform="rotate(-38 126 112)"/>
-                <ellipse cx="178" cy="106" rx="14" ry="6" fill="#386028" opacity="0.55" transform="rotate(32 178 106)"/>
-                <ellipse cx="188" cy="86" rx="12" ry="5.5" fill="#325820" opacity="0.5" transform="rotate(-22 188 86)"/>
-                <ellipse cx="108" cy="108" rx="12" ry="5.5" fill="#3c6028" opacity="0.5" transform="rotate(48 108 108)"/>
-                <!-- Top leaf tufts -->
-                <ellipse cx="154" cy="84" rx="11" ry="5.5" fill="#487838" opacity="0.65" transform="rotate(-18 154 84)"/>
-                <ellipse cx="178" cy="76" rx="10" ry="5" fill="#407030" opacity="0.6" transform="rotate(28 178 76)"/>
-                <ellipse cx="122" cy="88" rx="10" ry="4.5" fill="#427028" opacity="0.55" transform="rotate(-24 122 88)"/>
-                <ellipse cx="192" cy="80" rx="9" ry="4" fill="#385820" opacity="0.5" transform="rotate(-15 192 80)"/>
-                <ellipse cx="106" cy="90" rx="8" ry="4" fill="#3a6020" opacity="0.5" transform="rotate(50 106 90)"/>
-              </svg>
-              <!-- Oval sticker -->
-              <div class="shake-blob">
-                <div class="blob-from">SHAKE FROM</div>
-                <div class="blob-price"><sup>$</sup>12–<sup>$</sup>30</div>
-                <div class="blob-unit">PER OZ</div>
-              </div>
-            </div>
-            <div class="card-footer"><p>Shake — Various Strains</p></div>
-          </div>
-
-          <!-- Card: 50% Off — Seed Junky -->
-          <div class="card">
-            <div class="card-body">
-              <div class="price-main" style="font-size:86px;line-height:0.92;">50%<br>Off</div>
-              <div class="img-area" style="right:4px;">
-                <!-- Seed Junky: dark bag with graffiti rainbow band -->
-                <div class="bag" style="width:134px;height:250px;background:linear-gradient(170deg,#060606 0%,#101010 40%,#1a1a1a 100%);">
-                  <!-- Rainbow graffiti band -->
-                  <div style="position:absolute;top:14px;left:0;right:0;padding:8px 6px 6px;background:linear-gradient(90deg,#ff1a00,#ff7700,#ffdd00,#00cc44,#0055ff,#9922ee);z-index:3;">
-                    <div style="font-size:9.5px;font-weight:900;color:#fff;text-align:center;text-shadow:0 1px 4px rgba(0,0,0,0.95);letter-spacing:0.5px;text-transform:uppercase;">SEED JUNKY</div>
-                    <div style="font-size:7px;font-weight:700;color:rgba(255,255,255,0.9);text-align:center;text-shadow:0 1px 3px rgba(0,0,0,0.95);margin-top:2px;text-transform:uppercase;letter-spacing:0.5px;">GENETICS</div>
-                  </div>
-                  <div class="bag-label">
-                    <div style="font-size:6.5px;font-weight:700;color:#1a1a1a;text-transform:uppercase;">3.5G</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer"><p>Seed Junky 3.5G</p></div>
-          </div>
-
-          <!-- Card: 2 for $25 — Glorious & Everyday -->
-          <div class="card">
-            <div class="card-body">
-              <div class="price-qualifier">2 for</div>
-              <div class="price-main" style="font-size:102px;"><sup class="sup">$</sup>25</div>
-              <div class="img-area" style="right:4px;">
-                <!-- Glorious: near-black with teal-purple label -->
-                <div class="bag" style="width:104px;height:248px;background:linear-gradient(170deg,#040408 0%,#0a0a14 40%,#10101e 100%);">
-                  <div class="bag-brand">
-                    <div style="background:linear-gradient(135deg,#00b8d4,#5858c8,#8040d0);border-radius:5px;padding:8px 8px;width:100%;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.5);">
-                      <div style="font-size:10px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.3px;">GLORIOUS</div>
-                    </div>
-                  </div>
-                  <div class="bag-label" style="background:linear-gradient(90deg,#00b8d4,#5858c8);">
-                    <div style="font-size:6.5px;font-weight:700;color:#fff;text-transform:uppercase;">3.5G</div>
-                  </div>
-                </div>
-                <!-- Everyday: kraft/tan paper bag -->
-                <div class="bag" style="width:92px;height:222px;background:linear-gradient(170deg,#c4a468 0%,#a07e44 40%,#8a6432 100%);">
-                  <!-- Paper texture -->
-                  <div style="position:absolute;inset:0;opacity:0.2;background:repeating-linear-gradient(90deg,rgba(0,0,0,0.3) 0px,transparent 1px,transparent 4px);border-radius:8px 8px 6px 6px;"></div>
-                  <div class="bag-brand">
-                    <div style="background:rgba(255,255,255,0.88);border-radius:5px;padding:8px 7px;width:100%;text-align:center;">
-                      <div style="font-size:10px;font-weight:700;color:#4a2c10;text-transform:uppercase;letter-spacing:0.3px;font-style:italic;">Everyday</div>
-                    </div>
-                  </div>
-                  <div class="bag-label">
-                    <div style="font-size:6.5px;font-weight:700;color:#4a2c10;text-transform:uppercase;">3.5G</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card-footer"><p>Glorious 3.5G &amp; Everyday 3.5G</p></div>
-          </div>
-
-        </div><!-- /col-2 -->
-
-      </div><!-- /col-regular -->
-
-      <!-- ═══ BULK + INFUSED ═══ -->
-      <div class="col-sections">
-
-        <!-- ─── BULK ─── -->
-        <div class="col-section">
-          <div class="section-header"><h2>BULK</h2></div>
-          <div class="section-cards">
-
-            <!-- Zones 28G -->
-            <div class="card">
-              <div class="card-body">
-                <div class="price-qualifier">Only</div>
-                <div class="price-main" style="font-size:102px;"><sup class="sup">$</sup>79</div>
-                <div class="img-area">
-                  <div class="bag" style="width:148px;height:258px;background:linear-gradient(170deg,#0a36a0 0%,#1050bc 35%,#1868d4 65%,#0c42b0 100%);">
-                    <div class="bag-brand">
-                      <span style="font-size:112px;font-weight:900;color:rgba(255,255,255,0.22);line-height:1;display:block;text-align:center;font-family:'Geomanist',Arial,sans-serif;">Z</span>
-                    </div>
-                    <div class="bag-label">
-                      <div style="font-size:7px;font-weight:900;color:#0a2860;text-transform:uppercase;letter-spacing:0.5px;">ZONES 28G</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer"><p>Zones 28G</p></div>
-            </div>
-
-            <!-- Cheap Nugz 28G -->
-            <div class="card">
-              <div class="card-body">
-                <div class="price-qualifier">2 for</div>
-                <div class="price-main" style="font-size:102px;"><sup class="sup">$</sup>50</div>
-                <div class="img-area">
-                  <div class="bag" style="width:148px;height:256px;background:linear-gradient(170deg,#040404 0%,#0a0a0a 35%,#161616 100%);">
-                    <div class="bag-brand">
-                      <div style="text-align:center;">
-                        <div style="font-size:18px;font-weight:900;color:#EBE5D3;text-transform:uppercase;letter-spacing:0.5px;line-height:1.2;">CHEAP<br>NUGZ</div>
-                        <div style="width:60px;height:1.5px;background:rgba(168,195,126,0.6);margin:7px auto;"></div>
-                        <div style="font-size:8px;color:#a8c37e;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;">QUALITY ROOTS</div>
-                      </div>
-                    </div>
-                    <div class="bag-label">
-                      <div style="font-size:7px;font-weight:600;color:#0a0a0a;text-transform:uppercase;">28G</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer"><p>Cheap Nugz 28G</p></div>
-            </div>
-
-            <!-- Secret Stash 14G -->
-            <div class="card">
-              <div class="card-body">
-                <div class="price-qualifier">5 for</div>
-                <div class="price-main" style="font-size:102px;"><sup class="sup">$</sup>99</div>
-                <div class="img-area">
-                  <div class="bag" style="width:148px;height:256px;background:linear-gradient(170deg,#040404 0%,#0c0c0c 35%,#141414 100%);">
-                    <div class="bag-brand">
-                      <div style="font-size:22px;font-style:italic;font-weight:500;color:#EBE5D3;text-align:center;font-family:Georgia,serif;line-height:1.4;letter-spacing:0.3px;">Secret<br>Stash</div>
-                    </div>
-                    <div class="bag-label">
-                      <div style="font-size:7px;font-weight:600;color:#0a0a0a;text-transform:uppercase;">14G</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer"><p>Secret Stash 14G</p></div>
-            </div>
-
-          </div>
-        </div><!-- /col-bulk -->
-
-        <!-- ─── INFUSED ─── -->
-        <div class="col-section">
-          <div class="section-header"><h2>INFUSED</h2></div>
-          <div class="section-cards">
-
-            <!-- Fresh Canna Moonrocks 5G -->
-            <div class="card">
-              <div class="card-body">
-                <div class="price-qualifier">2 for</div>
-                <div class="price-main" style="font-size:102px;"><sup class="sup">$</sup>55</div>
-                <div class="img-area">
-                  <!-- Red product jar -->
-                  <div style="width:148px;height:258px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;flex-shrink:0;filter:drop-shadow(3px 5px 16px rgba(0,0,0,0.65));">
-                    <!-- Lid -->
-                    <div style="width:128px;height:22px;background:linear-gradient(90deg,#780000,#a00000,#cc0000,#a00000,#780000);border-radius:10px 10px 2px 2px;flex-shrink:0;border-top:2px solid rgba(255,200,200,0.3);"></div>
-                    <!-- Jar body -->
-                    <div style="width:128px;flex:1;background:linear-gradient(175deg,#d00000 0%,#aa0600 40%,#840400 100%);border-radius:0 0 14px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 10px;">
-                      <div style="background:rgba(255,255,255,0.14);border-radius:9px;padding:10px 10px;width:100%;text-align:center;border:1.5px solid rgba(255,255,255,0.22);">
-                        <div style="font-size:9px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.8px;">FRESH CANNA</div>
-                        <div style="height:1.5px;background:rgba(255,255,255,0.3);margin:5px 0;"></div>
-                        <div style="font-size:15px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.5px;line-height:1.2;">MOON<br>ROCKS</div>
-                        <div style="font-size:10px;color:#ffdd44;margin-top:5px;font-weight:700;">5G</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer"><p>Fresh Canna Moonrocks 5G</p></div>
-            </div>
-
-            <!-- Orange Runtz Infused 3.5G -->
-            <div class="card">
-              <div class="card-body">
-                <div class="price-qualifier">3 for</div>
-                <div class="price-main" style="font-size:102px;"><sup class="sup">$</sup>75</div>
-                <div class="img-area">
-                  <div class="bag" style="width:148px;height:256px;background:linear-gradient(170deg,#b83000 0%,#d85000 35%,#f07000 65%,#aa2e00 100%);">
-                    <div class="bag-brand">
-                      <div style="text-align:center;">
-                        <div style="font-size:8.5px;font-weight:700;color:rgba(255,255,255,0.75);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">UNITED TERPS</div>
-                        <div style="background:rgba(255,255,255,0.93);border-radius:6px;padding:8px 10px;">
-                          <div style="font-size:15px;font-weight:900;color:#7a2200;text-transform:uppercase;letter-spacing:0.5px;line-height:1.2;">ORANGE<br>RUNTZ</div>
-                        </div>
-                        <div style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.82);margin-top:6px;text-transform:uppercase;letter-spacing:0.5px;">INFUSED</div>
-                      </div>
-                    </div>
-                    <div class="bag-label">
-                      <div style="font-size:6.5px;font-weight:700;color:#5a1800;text-transform:uppercase;">3.5G</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer" style="padding:7px 10px;"><p>United Terps of America Infused 3.5G</p></div>
-            </div>
-
-            <!-- Smoorhouse Infused 3.5G -->
-            <div class="card">
-              <div class="card-body">
-                <div class="price-qualifier">2 for</div>
-                <div class="price-main" style="font-size:102px;"><sup class="sup">$</sup>50</div>
-                <div class="img-area">
-                  <div style="width:158px;height:256px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                    <!-- Round logo badge -->
-                    <div style="width:162px;height:162px;background:radial-gradient(ellipse at 32% 32%,#8ed050 0%,#5aaa22 30%,#358010 58%,#1e5c06 100%);border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:14px;box-shadow:4px 6px 22px rgba(0,0,0,0.7);">
-                      <div style="position:absolute;width:176px;height:176px;border-radius:50%;border:2px solid rgba(255,255,255,0.25);"></div>
-                      <div style="position:absolute;width:190px;height:190px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);"></div>
-                      <div style="text-align:center;position:relative;z-index:2;">
-                        <div style="font-size:18px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.5px;line-height:1.3;text-shadow:1px 2px 6px rgba(0,0,0,0.7);">SMOOR<br>HOUSE</div>
-                        <div style="width:58px;height:2px;background:rgba(255,255,255,0.5);margin:5px auto;"></div>
-                        <div style="font-size:9.5px;color:#d0ff88;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;">INFUSED</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer"><p>Smoorhouse Infused 3.5G</p></div>
-            </div>
-
-          </div>
-        </div><!-- /col-infused -->
-
-      </div><!-- /col-sections -->
-
-    </div><!-- /grid -->
-  </div><!-- /content -->
-</div><!-- /deals-screen -->
+</div><!-- #app-container -->
 
 <script>
-  const introScreen = document.getElementById('intro-screen');
-  const introVideo  = document.getElementById('intro-video');
-  const dealsScreen = document.getElementById('deals-screen');
-  const bgVideo     = document.getElementById('bg-video');
+async function loadAppData() {
+  try {
+    const response = await fetch('data.json');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Failed to load app data:', error);
+    return null;
+  }
+}
 
+/* Convert "$XX" to HTML with sup-wrapped dollar signs */
+function priceHTML(text) {
+  return (text || '').replace(/\$/g, '<sup class="sup">$</sup>');
+}
+
+/* Render a standard bag element */
+function renderBag(bag) {
+  const nameLines = bag.brand_name_line2
+    ? `${bag.brand_name}<br>${bag.brand_name_line2}`
+    : bag.brand_name;
+
+  let overlay = '';
+  if (bag.bag_style === 'diagonal_stripe') {
+    overlay = `<div style="position:absolute;inset:0;opacity:0.18;background:repeating-linear-gradient(135deg,#fff 0px,#fff 3px,transparent 3px,transparent 18px);border-radius:8px 8px 6px 6px;"></div>`;
+  } else if (bag.bag_style === 'paper_texture') {
+    overlay = `<div style="position:absolute;inset:0;opacity:0.2;background:repeating-linear-gradient(90deg,rgba(0,0,0,0.3) 0px,transparent 1px,transparent 4px);border-radius:8px 8px 6px 6px;"></div>`;
+  } else if (bag.bag_style === 'rainbow_band') {
+    const sub = bag.rainbow_subtext ? `<div style="font-size:7px;font-weight:700;color:rgba(255,255,255,0.9);text-align:center;text-shadow:0 1px 3px rgba(0,0,0,0.95);margin-top:2px;text-transform:uppercase;letter-spacing:0.5px;">${bag.rainbow_subtext}</div>` : '';
+    overlay = `<div style="position:absolute;top:14px;left:0;right:0;padding:8px 6px 6px;background:linear-gradient(90deg,#ff1a00,#ff7700,#ffdd00,#00cc44,#0055ff,#9922ee);z-index:3;">
+      <div style="font-size:9.5px;font-weight:900;color:#fff;text-align:center;text-shadow:0 1px 4px rgba(0,0,0,0.95);letter-spacing:0.5px;text-transform:uppercase;">${bag.rainbow_text || bag.brand_name}</div>
+      ${sub}
+    </div>`;
+  }
+
+  const brandHTML = bag.bag_style === 'rainbow_band' ? '' : `
+    <div class="bag-brand">
+      <div style="background:${bag.label_bg};border-radius:5px;padding:7px 8px;width:100%;text-align:center;">
+        <div style="font-size:9.5px;font-weight:900;color:${bag.label_text_color};letter-spacing:0.5px;line-height:1.5;text-transform:${bag.brand_name === bag.brand_name.toLowerCase() ? 'lowercase' : 'uppercase'};">${nameLines}</div>
+      </div>
+    </div>`;
+
+  return `<div class="bag" style="width:${bag.bag_width}px;height:${bag.bag_height}px;background:${bag.bag_gradient};">
+    ${overlay}
+    ${brandHTML}
+    <div class="bag-label" style="background:${bag.weight_label_bg};">
+      <div style="font-size:6.5px;font-weight:700;color:${bag.weight_text_color};text-transform:uppercase;">${bag.weight}</div>
+    </div>
+  </div>`;
+}
+
+/* Render col1 card */
+function renderCol1Card(card, bags) {
+  const cardBags = bags.filter(b => b.card === card.id);
+  const bagsHTML = cardBags.map(b => renderBag(b)).join('');
+  return `<div class="card" style="background:var(--card-bg);">
+    <div class="card-body">
+      <div class="price-qualifier" style="font-size:${card.price_qualifier_size}px;color:var(--primary);">${priceHTML(card.price_qualifier)}</div>
+      <div class="price-main" style="font-size:${card.price_main_size}px;color:var(--primary);">${priceHTML(card.price_main)}</div>
+      <div class="img-area">${bagsHTML}</div>
+    </div>
+    <div class="card-footer" style="background:var(--primary);">
+      <p style="color:var(--card-footer-text);">${card.footer_text}</p>
+    </div>
+  </div>`;
+}
+
+/* Render shake card */
+function renderShakeCard(shake, primary, accent) {
+  return `<div class="card" style="background:var(--card-bg);">
+    <div class="card-body" style="overflow:visible;position:relative;">
+      <svg viewBox="0 0 290 270" style="position:absolute;right:-22px;top:-18px;width:224px;height:248px;z-index:1;" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="152" cy="220" rx="85" ry="22" fill="rgba(0,0,0,0.28)" opacity="0.7"/>
+        <ellipse cx="152" cy="198" rx="82" ry="50" fill="#2e2006" opacity="0.95"/>
+        <ellipse cx="160" cy="192" rx="72" ry="42" fill="#4a3210" opacity="0.9"/>
+        <ellipse cx="144" cy="196" rx="70" ry="44" fill="#3e2a0c" opacity="0.8"/>
+        <ellipse cx="152" cy="180" rx="64" ry="34" fill="#6e5018" opacity="0.85"/>
+        <ellipse cx="162" cy="175" rx="52" ry="28" fill="#7e5e20" opacity="0.8"/>
+        <circle cx="132" cy="174" r="15" fill="#5e4014" opacity="0.85"/>
+        <circle cx="154" cy="166" r="12" fill="#6e5018" opacity="0.8"/>
+        <circle cx="176" cy="172" r="14" fill="#7a5c1c" opacity="0.85"/>
+        <circle cx="190" cy="180" r="11" fill="#6a4e14" opacity="0.75"/>
+        <circle cx="120" cy="182" r="11" fill="#524012" opacity="0.8"/>
+        <circle cx="168" cy="162" r="10" fill="#8a6a22" opacity="0.75"/>
+        <circle cx="142" cy="164" r="9" fill="#7e6020" opacity="0.7"/>
+        <circle cx="132" cy="172" r="5.5" fill="#4e7236" opacity="0.55"/>
+        <circle cx="155" cy="164" r="4.5" fill="#487030" opacity="0.5"/>
+        <circle cx="176" cy="170" r="5" fill="#426830" opacity="0.45"/>
+        <circle cx="143" cy="162" r="4" fill="#3c6028" opacity="0.45"/>
+        <ellipse cx="110" cy="190" rx="9" ry="5.5" fill="#5a4012" opacity="0.7" transform="rotate(28 110 190)"/>
+        <ellipse cx="204" cy="184" rx="8" ry="4.5" fill="#4e3808" opacity="0.65" transform="rotate(-20 204 184)"/>
+        <ellipse cx="104" cy="178" rx="7" ry="4" fill="#6a5016" opacity="0.6" transform="rotate(42 104 178)"/>
+        <ellipse cx="210" cy="172" rx="5.5" ry="3" fill="#5a4010" opacity="0.55" transform="rotate(-32 210 172)"/>
+        <circle cx="150" cy="170" r="3.5" fill="#c89020" opacity="0.65"/>
+        <circle cx="166" cy="164" r="3" fill="#d49828" opacity="0.6"/>
+        <circle cx="137" cy="166" r="3" fill="#b88018" opacity="0.55"/>
+        <circle cx="175" cy="174" r="2.5" fill="#c08018" opacity="0.55"/>
+        <path d="M148 168 C150 138 152 110 154 82" stroke="#3e6828" stroke-width="3" fill="none" opacity="0.7"/>
+        <path d="M163 170 C168 140 174 112 180 84" stroke="#346020" stroke-width="2.4" fill="none" opacity="0.6"/>
+        <path d="M134 172 C130 142 126 114 122 86" stroke="#447028" stroke-width="2.2" fill="none" opacity="0.55"/>
+        <path d="M173 167 C180 136 186 108 192 78" stroke="#3a5c20" stroke-width="2" fill="none" opacity="0.5"/>
+        <path d="M120 178 C112 148 108 118 104 88" stroke="#306018" stroke-width="1.8" fill="none" opacity="0.45"/>
+        <ellipse cx="152" cy="118" rx="18" ry="8" fill="#487838" opacity="0.65" transform="rotate(-28 152 118)"/>
+        <ellipse cx="157" cy="96" rx="15" ry="7" fill="#427030" opacity="0.6" transform="rotate(22 157 96)"/>
+        <ellipse cx="126" cy="112" rx="16" ry="7" fill="#3e6828" opacity="0.55" transform="rotate(-38 126 112)"/>
+        <ellipse cx="178" cy="106" rx="14" ry="6" fill="#386028" opacity="0.55" transform="rotate(32 178 106)"/>
+        <ellipse cx="188" cy="86" rx="12" ry="5.5" fill="#325820" opacity="0.5" transform="rotate(-22 188 86)"/>
+        <ellipse cx="108" cy="108" rx="12" ry="5.5" fill="#3c6028" opacity="0.5" transform="rotate(48 108 108)"/>
+        <ellipse cx="154" cy="84" rx="11" ry="5.5" fill="#487838" opacity="0.65" transform="rotate(-18 154 84)"/>
+        <ellipse cx="178" cy="76" rx="10" ry="5" fill="#407030" opacity="0.6" transform="rotate(28 178 76)"/>
+        <ellipse cx="122" cy="88" rx="10" ry="4.5" fill="#427028" opacity="0.55" transform="rotate(-24 122 88)"/>
+        <ellipse cx="192" cy="80" rx="9" ry="4" fill="#385820" opacity="0.5" transform="rotate(-15 192 80)"/>
+        <ellipse cx="106" cy="90" rx="8" ry="4" fill="#3a6020" opacity="0.5" transform="rotate(50 106 90)"/>
+      </svg>
+      <div class="shake-blob" style="background:${primary};">
+        <div class="blob-from">${shake.prefix_label.value}</div>
+        <div class="blob-price"><sup>$</sup>${shake.price_from.value}–<sup>$</sup>${shake.price_to.value}</div>
+        <div class="blob-unit" style="color:${accent};">${shake.price_unit.value}</div>
+      </div>
+    </div>
+    <div class="card-footer" style="background:var(--primary);">
+      <p style="color:var(--card-footer-text);">${shake.footer_text.value}</p>
+    </div>
+  </div>`;
+}
+
+/* Render col2 card */
+function renderCol2Card(card, bags) {
+  const cardBags = bags.filter(b => b.card === card.id);
+  const bagsHTML = cardBags.map(b => renderBag(b)).join('');
+
+  let priceBlock = '';
+  if (card.card_type === 'percent_off') {
+    const lines = card.price_main.split('\n');
+    priceBlock = `<div class="price-main" style="font-size:${card.price_main_size}px;line-height:0.92;color:var(--primary);">${lines.join('<br>')}</div>`;
+  } else {
+    priceBlock = `
+      ${card.price_qualifier ? `<div class="price-qualifier" style="font-size:34px;color:var(--primary);">${card.price_qualifier}</div>` : ''}
+      <div class="price-main" style="font-size:${card.price_main_size}px;color:var(--primary);">${priceHTML(card.price_main)}</div>`;
+  }
+
+  const imgRight = card.card_type === 'percent_off' ? 'right:4px;' : 'right:4px;';
+  return `<div class="card" style="background:var(--card-bg);">
+    <div class="card-body">
+      ${priceBlock}
+      <div class="img-area" style="${imgRight}">${bagsHTML}</div>
+    </div>
+    <div class="card-footer" style="background:var(--primary);">
+      <p style="color:var(--card-footer-text);">${card.footer_text}</p>
+    </div>
+  </div>`;
+}
+
+/* Render bulk product card */
+function renderBulkProduct(product) {
+  let productHTML = '';
+  if (product.product_type === 'bag_large_letter') {
+    productHTML = `<div class="bag" style="width:148px;height:258px;background:${product.bag_gradient};">
+      <div class="bag-brand">
+        <span style="font-size:112px;font-weight:900;color:${product.large_letter_color};line-height:1;display:block;text-align:center;font-family:'Geomanist',Arial,sans-serif;">${product.large_letter}</span>
+      </div>
+      <div class="bag-label" style="background:${product.weight_label_bg};">
+        <div style="font-size:7px;font-weight:900;color:${product.weight_text_color};text-transform:uppercase;letter-spacing:0.5px;">${product.weight_label_full}</div>
+      </div>
+    </div>`;
+  } else if (product.product_type === 'bag_text_centered') {
+    const line2 = product.brand_name_line2 ? `<br>${product.brand_name_line2}` : '';
+    const subtext = product.subtext ? `<div style="width:60px;height:1.5px;background:rgba(168,195,126,0.6);margin:7px auto;"></div><div style="font-size:8px;color:${product.subtext_color};text-transform:uppercase;letter-spacing:1.5px;font-weight:600;">${product.subtext}</div>` : '';
+    productHTML = `<div class="bag" style="width:148px;height:256px;background:${product.bag_gradient};">
+      <div class="bag-brand">
+        <div style="text-align:center;">
+          <div style="font-size:18px;font-weight:900;color:#EBE5D3;text-transform:uppercase;letter-spacing:0.5px;line-height:1.2;">${product.brand_name}${line2}</div>
+          ${subtext}
+        </div>
+      </div>
+      <div class="bag-label" style="background:${product.weight_label_bg};">
+        <div style="font-size:7px;font-weight:600;color:${product.weight_text_color};text-transform:uppercase;">${product.weight_label_full}</div>
+      </div>
+    </div>`;
+  } else if (product.product_type === 'bag_italic_text') {
+    const line2 = product.brand_name_line2 ? `<br>${product.brand_name_line2}` : '';
+    productHTML = `<div class="bag" style="width:148px;height:256px;background:${product.bag_gradient};">
+      <div class="bag-brand">
+        <div style="font-size:22px;font-style:italic;font-weight:500;color:#EBE5D3;text-align:center;font-family:Georgia,serif;line-height:1.4;letter-spacing:0.3px;">${product.brand_name}${line2}</div>
+      </div>
+      <div class="bag-label" style="background:${product.weight_label_bg};">
+        <div style="font-size:7px;font-weight:600;color:${product.weight_text_color};text-transform:uppercase;">${product.weight_label_full}</div>
+      </div>
+    </div>`;
+  }
+
+  return `<div class="card" style="background:var(--card-bg);">
+    <div class="card-body">
+      <div class="price-qualifier" style="font-size:34px;color:var(--primary);">${product.price_qualifier}</div>
+      <div class="price-main" style="font-size:102px;color:var(--primary);">${priceHTML(product.price_main)}</div>
+      <div class="img-area">${productHTML}</div>
+    </div>
+    <div class="card-footer" style="background:var(--primary);">
+      <p style="color:var(--card-footer-text);">${product.footer_text}</p>
+    </div>
+  </div>`;
+}
+
+/* Render infused product card */
+function renderInfusedProduct(product) {
+  let productHTML = '';
+
+  if (product.product_type === 'jar_red') {
+    const pLine2 = product.product_name_line2 ? `<br>${product.product_name_line2}` : '';
+    productHTML = `<div style="width:148px;height:258px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;flex-shrink:0;filter:drop-shadow(3px 5px 16px rgba(0,0,0,0.65));">
+      <div style="width:128px;height:22px;background:linear-gradient(90deg,#780000,#a00000,#cc0000,#a00000,#780000);border-radius:10px 10px 2px 2px;flex-shrink:0;border-top:2px solid rgba(255,200,200,0.3);"></div>
+      <div style="width:128px;flex:1;background:${product.container_gradient};border-radius:0 0 14px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 10px;">
+        <div style="background:${product.label_bg};border-radius:9px;padding:10px 10px;width:100%;text-align:center;border:1.5px solid rgba(255,255,255,0.22);">
+          <div style="font-size:9px;font-weight:900;color:${product.label_text_color};text-transform:uppercase;letter-spacing:0.8px;">${product.brand_name}</div>
+          <div style="height:1.5px;background:rgba(255,255,255,0.3);margin:5px 0;"></div>
+          <div style="font-size:15px;font-weight:900;color:${product.label_text_color};text-transform:uppercase;letter-spacing:0.5px;line-height:1.2;">${product.product_name}${pLine2}</div>
+          <div style="font-size:10px;color:${product.weight_color};margin-top:5px;font-weight:700;">${product.weight}</div>
+        </div>
+      </div>
+    </div>`;
+  } else if (product.product_type === 'bag_branded') {
+    const pLine2 = product.product_name_line2 ? `<br>${product.product_name_line2}` : '';
+    const subLabel = product.sub_label ? `<div style="font-size:8px;font-weight:700;color:${product.sub_label_color};margin-top:6px;text-transform:uppercase;letter-spacing:0.5px;">${product.sub_label}</div>` : '';
+    const brandTop = product.brand_name ? `<div style="font-size:8.5px;font-weight:700;color:rgba(255,255,255,0.75);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">${product.brand_name}</div>` : '';
+    productHTML = `<div class="bag" style="width:148px;height:256px;background:${product.container_gradient};">
+      <div class="bag-brand">
+        <div style="text-align:center;">
+          ${brandTop}
+          <div style="background:${product.label_bg};border-radius:6px;padding:8px 10px;">
+            <div style="font-size:15px;font-weight:900;color:${product.label_text_color};text-transform:uppercase;letter-spacing:0.5px;line-height:1.2;">${product.product_name}${pLine2}</div>
+          </div>
+          ${subLabel}
+        </div>
+      </div>
+      <div class="bag-label" style="background:${product.weight_label_bg};">
+        <div style="font-size:6.5px;font-weight:700;color:${product.weight_text_color};text-transform:uppercase;">${product.weight}</div>
+      </div>
+    </div>`;
+  } else if (product.product_type === 'badge_circle') {
+    const nameLine2 = product.product_name_line2 ? `<br>${product.product_name_line2}` : '';
+    const brandLine = (product.brand_name && product.product_name) ? `${product.brand_name}<br>${product.product_name}${nameLine2}` : `${product.brand_name}${nameLine2}`;
+    const sub = product.sub_label ? `<div style="width:58px;height:2px;background:${product.badge_accent_color};margin:5px auto;"></div><div style="font-size:9.5px;color:${product.sub_label_color};text-transform:uppercase;letter-spacing:1.5px;font-weight:700;">${product.sub_label}</div>` : '';
+    productHTML = `<div style="width:158px;height:256px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <div style="width:162px;height:162px;background:${product.container_gradient};border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:14px;box-shadow:4px 6px 22px rgba(0,0,0,0.7);position:relative;">
+        <div style="position:absolute;width:176px;height:176px;border-radius:50%;border:2px solid rgba(255,255,255,0.25);"></div>
+        <div style="position:absolute;width:190px;height:190px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);"></div>
+        <div style="text-align:center;position:relative;z-index:2;">
+          <div style="font-size:18px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.5px;line-height:1.3;text-shadow:1px 2px 6px rgba(0,0,0,0.7);">${brandLine}</div>
+          ${sub}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  const footerPad = product.footer_text.length > 30 ? 'padding:7px 10px;' : '';
+  return `<div class="card" style="background:var(--card-bg);">
+    <div class="card-body">
+      <div class="price-qualifier" style="font-size:34px;color:var(--primary);">${product.price_qualifier}</div>
+      <div class="price-main" style="font-size:102px;color:var(--primary);">${priceHTML(product.price_main)}</div>
+      <div class="img-area">${productHTML}</div>
+    </div>
+    <div class="card-footer" style="background:var(--primary);${footerPad}">
+      <p style="color:var(--card-footer-text);">${product.footer_text}</p>
+    </div>
+  </div>`;
+}
+
+/* Render a BULK or INFUSED section column */
+function renderSectionColumn(title, accentColor, sectionBg, products, renderFn) {
+  const cardsHTML = products.map(p => renderFn(p)).join('');
+  return `<div class="col-section" style="border-color:rgba(168,195,126,0.4);">
+    <div class="section-header" style="background:${sectionBg};">
+      <h2 style="color:${accentColor};">${title}</h2>
+    </div>
+    <div class="section-cards" style="background:${sectionBg};">${cardsHTML}</div>
+  </div>`;
+}
+
+async function init() {
+  const data = await loadAppData();
+  if (!data) return;
+
+  const s = data.sections;
+  const settings = s.app_settings;
+  const primary   = settings.primary_color.value;
+  const accent    = settings.accent_color.value;
+  const cardBg    = settings.card_bg_color.value;
+  const footerBg  = settings.card_footer_bg_color.value;
+  const footerTxt = settings.card_footer_text_color.value;
+  const sectionBg = settings.section_bg_color.value;
+  const bodyBg    = settings.body_bg_color.value;
+
+  /* Apply CSS variables */
+  const root = document.documentElement;
+  root.style.setProperty('--primary', primary);
+  root.style.setProperty('--accent', accent);
+  root.style.setProperty('--card-bg', cardBg);
+  root.style.setProperty('--card-footer-bg', footerBg);
+  root.style.setProperty('--card-footer-text', footerTxt);
+
+  /* Body background */
+  document.body.style.background = bodyBg;
+
+  /* Page title */
+  document.title = s.storefront.page_title.value;
+
+  /* Logo */
+  document.getElementById('qr-logo').src = s.storefront.logo.value;
+
+  /* Header category label */
+  document.getElementById('category-label').textContent = s.header.category_label.value;
+  if (!s.header.show_leaf_icon.value) {
+    document.getElementById('flower-icon').style.display = 'none';
+  }
+
+  /* Videos */
+  const introVideo = document.getElementById('intro-video');
+  const bgVideo    = document.getElementById('bg-video');
+  introVideo.innerHTML = `<source src="${settings.intro_video_url.value}" type="video/mp4">`;
+  bgVideo.innerHTML    = `<source src="${settings.bg_video_url.value}" type="video/mp4">`;
+
+  /* Background overlay */
+  document.querySelector('.bg-overlay').style.background =
+    `rgba(16, 26, 18, ${settings.bg_overlay_opacity.value})`;
+
+  /* Col 1 */
+  const col1El   = document.getElementById('col-1');
+  const col1Cards = s.col1_cards.value;
+  const col1Bags  = s.col1_bags.value;
+  col1El.innerHTML = col1Cards.map(c => renderCol1Card(c, col1Bags)).join('');
+
+  /* Col 2 — shake card always first */
+  const col2El    = document.getElementById('col-2');
+  const col2Cards = s.col2_cards.value;
+  const col2Bags  = s.col2_bags.value;
+  const shakeHTML = renderShakeCard(s.shake_card, primary, accent);
+  const col2HTML  = col2Cards.map(c => renderCol2Card(c, col2Bags)).join('');
+  col2El.innerHTML = shakeHTML + col2HTML;
+
+  /* Bulk + Infused sections */
+  const sectionsEl = document.getElementById('col-sections');
+  const bulkHTML   = renderSectionColumn(
+    s.bulk_section.title.value, accent, sectionBg,
+    s.bulk_products.value, renderBulkProduct
+  );
+  const infusedHTML = renderSectionColumn(
+    s.infused_section.title.value, accent, sectionBg,
+    s.infused_products.value, renderInfusedProduct
+  );
+  sectionsEl.innerHTML = bulkHTML + infusedHTML;
+
+  /* Reveal app */
+  document.getElementById('app-container').classList.add('loaded');
+
+  /* Intro → deals transition */
+  const transitionTime = settings.intro_transition_time.value;
+  const bgStartTime    = settings.bg_video_start_time.value;
   let transitioned = false;
 
   function showDeals() {
     if (transitioned) return;
     transitioned = true;
-
-    introScreen.classList.add('fade-out');
-    dealsScreen.classList.add('visible');
-
-    bgVideo.currentTime = 5.5;
+    document.getElementById('intro-screen').classList.add('fade-out');
+    document.getElementById('deals-screen').classList.add('visible');
+    bgVideo.currentTime = bgStartTime;
     bgVideo.play().catch(() => {});
-
-    setTimeout(() => { introScreen.style.display = 'none'; }, 900);
+    setTimeout(() => {
+      document.getElementById('intro-screen').style.display = 'none';
+    }, 900);
   }
 
   introVideo.addEventListener('timeupdate', function() {
-    if (introVideo.currentTime >= 4.8) showDeals();
+    if (introVideo.currentTime >= transitionTime) showDeals();
   });
-
   introVideo.addEventListener('ended', showDeals);
   introVideo.addEventListener('error',  showDeals);
-
   setTimeout(showDeals, 10000);
+
+  introVideo.load();
+  introVideo.play().catch(() => {});
+}
+
+init();
 </script>
   <script>
     if ('serviceWorker' in navigator) {

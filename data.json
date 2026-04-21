@@ -1,0 +1,586 @@
+{
+  "app_id": "aigen-1776734898538",
+  "document_version": 1,
+  "sections": {
+    "app_settings": {
+      "intro_video_url": {
+        "type": "url",
+        "label": "Intro Video URL",
+        "value": "https://skoop-general.s3.us-east-1.amazonaws.com/1776735063166-template_blank_with_intro.mp4"
+      },
+      "intro_transition_time": {
+        "type": "number",
+        "label": "Intro Transition Time (seconds)",
+        "value": 4.8
+      },
+      "bg_video_url": {
+        "type": "url",
+        "label": "Background Loop Video URL",
+        "value": "https://skoop-general.s3.us-east-1.amazonaws.com/1776735063166-template_blank_with_intro.mp4"
+      },
+      "bg_video_start_time": {
+        "type": "number",
+        "label": "Background Video Start Time (seconds)",
+        "value": 5.5
+      },
+      "bg_overlay_opacity": {
+        "type": "number",
+        "label": "Background Overlay Opacity (0–1)",
+        "value": 0.88
+      },
+      "body_bg_color": {
+        "type": "color",
+        "label": "Body Background Color",
+        "value": "#1a2820"
+      },
+      "primary_color": {
+        "type": "color",
+        "label": "Primary Dark Color",
+        "value": "#253529"
+      },
+      "accent_color": {
+        "type": "color",
+        "label": "Accent Green Color",
+        "value": "#a8c37e"
+      },
+      "card_bg_color": {
+        "type": "color",
+        "label": "Card Background Color",
+        "value": "#EBE5D3"
+      },
+      "card_footer_bg_color": {
+        "type": "color",
+        "label": "Card Footer Background Color",
+        "value": "#253529"
+      },
+      "card_footer_text_color": {
+        "type": "color",
+        "label": "Card Footer Text Color",
+        "value": "#EBE5D3"
+      },
+      "section_bg_color": {
+        "type": "color",
+        "label": "Bulk/Infused Section Background Color",
+        "value": "#1a2820"
+      },
+      "section_border_color": {
+        "type": "color",
+        "label": "Bulk/Infused Section Border Color",
+        "value": "#a8c37e"
+      },
+      "section_header_title_color": {
+        "type": "color",
+        "label": "Section Header Title Color (BULK / INFUSED)",
+        "value": "#a8c37e"
+      }
+    },
+    "storefront": {
+      "logo": {
+        "type": "file",
+        "label": "Store Logo",
+        "value": "assets/logos/QR_Logos_QR_Horizontal_White.svg",
+        "meta": {
+          "accepted_formats": ["svg", "png", "jpg"],
+          "path": "assets/logos/"
+        }
+      },
+      "page_title": {
+        "type": "text",
+        "label": "Browser Tab Title",
+        "value": "Quality Roots - Flower Deals"
+      }
+    },
+    "header": {
+      "category_label": {
+        "type": "text",
+        "label": "Category Label (e.g. FLOWER)",
+        "value": "FLOWER"
+      },
+      "show_leaf_icon": {
+        "type": "boolean",
+        "label": "Show Leaf Icon",
+        "value": true
+      }
+    },
+    "shake_card": {
+      "prefix_label": {
+        "type": "text",
+        "label": "Shake Price Prefix Label",
+        "value": "SHAKE FROM"
+      },
+      "price_from": {
+        "type": "number",
+        "label": "Shake Price From ($)",
+        "value": 12,
+        "meta": { "format": "currency" }
+      },
+      "price_to": {
+        "type": "number",
+        "label": "Shake Price To ($)",
+        "value": 30,
+        "meta": { "format": "currency" }
+      },
+      "price_unit": {
+        "type": "text",
+        "label": "Shake Price Unit Label",
+        "value": "PER OZ"
+      },
+      "footer_text": {
+        "type": "text",
+        "label": "Shake Card Footer Text",
+        "value": "Shake — Various Strains"
+      }
+    },
+    "col1_cards": {
+      "type": "collection",
+      "label": "Regular Deal Cards (Column 1 — Wide)",
+      "item_schema": {
+        "id": { "type": "text", "label": "ID" },
+        "price_qualifier": { "type": "text", "label": "Price Qualifier (e.g. '2 for', 'Only $12 or')" },
+        "price_qualifier_size": { "type": "number", "label": "Price Qualifier Font Size (px)", "meta": { "format": "integer" } },
+        "price_main": { "type": "text", "label": "Main Price (use $ prefix, e.g. '$48' or '7 for $77')" },
+        "price_main_size": { "type": "number", "label": "Main Price Font Size (px)", "meta": { "format": "integer" } },
+        "footer_text": { "type": "text", "label": "Footer Text" }
+      },
+      "value": [
+        {
+          "id": "c1_a1b2c3",
+          "price_qualifier": "Only $12 or",
+          "price_qualifier_size": 22,
+          "price_main": "7 for $77",
+          "price_main_size": 80,
+          "footer_text": "Common Citizen 3.5G & Euphoria 3.5G"
+        },
+        {
+          "id": "c1_d4e5f6",
+          "price_qualifier": "2 for",
+          "price_qualifier_size": 34,
+          "price_main": "$48",
+          "price_main_size": 102,
+          "footer_text": "Michigrown 3.5G & ProGro 3.5G"
+        },
+        {
+          "id": "c1_g7h8i9",
+          "price_qualifier": "3 for",
+          "price_qualifier_size": 34,
+          "price_main": "$42",
+          "price_main_size": 102,
+          "footer_text": "Wise Guys 3.5G & Grown Rogue 3.5G"
+        }
+      ]
+    },
+    "col1_bags": {
+      "type": "collection",
+      "label": "Bags for Column 1 Cards",
+      "item_schema": {
+        "id": { "type": "text", "label": "ID" },
+        "card": { "type": "text", "label": "Card ID (references col1_cards)" },
+        "brand_name": { "type": "text", "label": "Brand Name Line 1" },
+        "brand_name_line2": { "type": "text", "label": "Brand Name Line 2 (optional)" },
+        "weight": { "type": "text", "label": "Weight Label (e.g. 3.5G)" },
+        "bag_gradient": { "type": "text", "label": "Bag Background CSS Gradient" },
+        "bag_width": { "type": "number", "label": "Bag Width (px)", "meta": { "format": "integer" } },
+        "bag_height": { "type": "number", "label": "Bag Height (px)", "meta": { "format": "integer" } },
+        "label_bg": { "type": "text", "label": "Brand Label Background CSS" },
+        "label_text_color": { "type": "text", "label": "Brand Label Text Color" },
+        "weight_label_bg": { "type": "text", "label": "Weight Label Background CSS" },
+        "weight_text_color": { "type": "text", "label": "Weight Label Text Color" },
+        "bag_style": {
+          "type": "enum",
+          "label": "Bag Visual Style",
+          "meta": { "options": ["standard", "diagonal_stripe", "paper_texture"] }
+        }
+      },
+      "value": [
+        {
+          "id": "bag_cc1111",
+          "card": "c1_a1b2c3",
+          "brand_name": "common",
+          "brand_name_line2": "citizen",
+          "weight": "3.5G",
+          "bag_gradient": "linear-gradient(170deg,#1e0840 0%,#331060 30%,#481888 60%,#2c0a58 100%)",
+          "bag_width": 106,
+          "bag_height": 250,
+          "label_bg": "rgba(255,255,255,0.88)",
+          "label_text_color": "#2a0a5a",
+          "weight_label_bg": "rgba(255,255,255,0.95)",
+          "weight_text_color": "#2a0a5a",
+          "bag_style": "standard"
+        },
+        {
+          "id": "bag_eu2222",
+          "card": "c1_a1b2c3",
+          "brand_name": "EUPHORIA",
+          "brand_name_line2": "",
+          "weight": "3.5G",
+          "bag_gradient": "linear-gradient(170deg,#780e5c 0%,#aa2678 35%,#cc4898 65%,#8a1468 100%)",
+          "bag_width": 92,
+          "bag_height": 224,
+          "label_bg": "rgba(255,255,255,0.9)",
+          "label_text_color": "#640844",
+          "weight_label_bg": "rgba(255,255,255,0.95)",
+          "weight_text_color": "#640844",
+          "bag_style": "standard"
+        },
+        {
+          "id": "bag_mg3333",
+          "card": "c1_d4e5f6",
+          "brand_name": "MICHI",
+          "brand_name_line2": "GROWN",
+          "weight": "3.5G",
+          "bag_gradient": "linear-gradient(170deg,#98b8cc 0%,#72a0bc 35%,#5080a8 65%,#386898 100%)",
+          "bag_width": 110,
+          "bag_height": 250,
+          "label_bg": "rgba(255,255,255,0.9)",
+          "label_text_color": "#1e3a58",
+          "weight_label_bg": "rgba(255,255,255,0.95)",
+          "weight_text_color": "#1e3a58",
+          "bag_style": "diagonal_stripe"
+        },
+        {
+          "id": "bag_pg4444",
+          "card": "c1_d4e5f6",
+          "brand_name": "PROGRO",
+          "brand_name_line2": "",
+          "weight": "3.5G",
+          "bag_gradient": "linear-gradient(170deg,#080808 0%,#141414 40%,#1e1e1e 100%)",
+          "bag_width": 96,
+          "bag_height": 224,
+          "label_bg": "linear-gradient(135deg,#d4a020,#f0c040,#b88010)",
+          "label_text_color": "#000000",
+          "weight_label_bg": "#c09020",
+          "weight_text_color": "#000000",
+          "bag_style": "standard"
+        },
+        {
+          "id": "bag_gr5555",
+          "card": "c1_g7h8i9",
+          "brand_name": "GROWN",
+          "brand_name_line2": "ROGUE",
+          "weight": "3.5G",
+          "bag_gradient": "linear-gradient(170deg,#060c18 0%,#0e1c30 35%,#162440 65%,#0a1020 100%)",
+          "bag_width": 108,
+          "bag_height": 248,
+          "label_bg": "rgba(255,255,255,0.88)",
+          "label_text_color": "#060c18",
+          "weight_label_bg": "rgba(255,255,255,0.95)",
+          "weight_text_color": "#0a1828",
+          "bag_style": "standard"
+        },
+        {
+          "id": "bag_wg6666",
+          "card": "c1_g7h8i9",
+          "brand_name": "WISE",
+          "brand_name_line2": "GUYS",
+          "weight": "3.5G",
+          "bag_gradient": "linear-gradient(170deg,#cc1a58 0%,#e83880 35%,#f055a0 65%,#b81048 100%)",
+          "bag_width": 94,
+          "bag_height": 222,
+          "label_bg": "rgba(255,255,255,0.9)",
+          "label_text_color": "#8a0830",
+          "weight_label_bg": "rgba(255,255,255,0.95)",
+          "weight_text_color": "#8a0830",
+          "bag_style": "standard"
+        }
+      ]
+    },
+    "col2_cards": {
+      "type": "collection",
+      "label": "Special Deal Cards (Column 2 — Narrow)",
+      "item_schema": {
+        "id": { "type": "text", "label": "ID" },
+        "card_type": {
+          "type": "enum",
+          "label": "Card Type",
+          "meta": { "options": ["standard_2bag", "percent_off"] }
+        },
+        "price_qualifier": { "type": "text", "label": "Price Qualifier (leave empty if not needed)" },
+        "price_main": { "type": "text", "label": "Main Price / Headline (use \\n for line break)" },
+        "price_main_size": { "type": "number", "label": "Headline Font Size (px)", "meta": { "format": "integer" } },
+        "footer_text": { "type": "text", "label": "Footer Text" }
+      },
+      "value": [
+        {
+          "id": "c2_b1c2d3",
+          "card_type": "percent_off",
+          "price_qualifier": "",
+          "price_main": "50%\nOff",
+          "price_main_size": 86,
+          "footer_text": "Seed Junky 3.5G"
+        },
+        {
+          "id": "c2_e4f5g6",
+          "card_type": "standard_2bag",
+          "price_qualifier": "2 for",
+          "price_main": "$25",
+          "price_main_size": 102,
+          "footer_text": "Glorious 3.5G & Everyday 3.5G"
+        }
+      ]
+    },
+    "col2_bags": {
+      "type": "collection",
+      "label": "Bags for Column 2 Cards",
+      "item_schema": {
+        "id": { "type": "text", "label": "ID" },
+        "card": { "type": "text", "label": "Card ID (references col2_cards)" },
+        "brand_name": { "type": "text", "label": "Brand Name Line 1" },
+        "brand_name_line2": { "type": "text", "label": "Brand Name Line 2 (optional)" },
+        "weight": { "type": "text", "label": "Weight Label (e.g. 3.5G)" },
+        "bag_gradient": { "type": "text", "label": "Bag Background CSS Gradient" },
+        "bag_width": { "type": "number", "label": "Bag Width (px)", "meta": { "format": "integer" } },
+        "bag_height": { "type": "number", "label": "Bag Height (px)", "meta": { "format": "integer" } },
+        "label_bg": { "type": "text", "label": "Brand Label Background CSS" },
+        "label_text_color": { "type": "text", "label": "Brand Label Text Color" },
+        "weight_label_bg": { "type": "text", "label": "Weight Label Background CSS" },
+        "weight_text_color": { "type": "text", "label": "Weight Label Text Color" },
+        "bag_style": {
+          "type": "enum",
+          "label": "Bag Visual Style",
+          "meta": { "options": ["standard", "diagonal_stripe", "paper_texture", "rainbow_band"] }
+        },
+        "rainbow_text": { "type": "text", "label": "Rainbow Band Text (rainbow_band style only)" },
+        "rainbow_subtext": { "type": "text", "label": "Rainbow Band Subtext (rainbow_band style only)" }
+      },
+      "value": [
+        {
+          "id": "bag_sj7777",
+          "card": "c2_b1c2d3",
+          "brand_name": "SEED JUNKY",
+          "brand_name_line2": "GENETICS",
+          "weight": "3.5G",
+          "bag_gradient": "linear-gradient(170deg,#060606 0%,#101010 40%,#1a1a1a 100%)",
+          "bag_width": 134,
+          "bag_height": 250,
+          "label_bg": "rgba(255,255,255,0.95)",
+          "label_text_color": "#1a1a1a",
+          "weight_label_bg": "rgba(255,255,255,0.95)",
+          "weight_text_color": "#1a1a1a",
+          "bag_style": "rainbow_band",
+          "rainbow_text": "SEED JUNKY",
+          "rainbow_subtext": "GENETICS"
+        },
+        {
+          "id": "bag_gl8888",
+          "card": "c2_e4f5g6",
+          "brand_name": "GLORIOUS",
+          "brand_name_line2": "",
+          "weight": "3.5G",
+          "bag_gradient": "linear-gradient(170deg,#040408 0%,#0a0a14 40%,#10101e 100%)",
+          "bag_width": 104,
+          "bag_height": 248,
+          "label_bg": "linear-gradient(135deg,#00b8d4,#5858c8,#8040d0)",
+          "label_text_color": "#ffffff",
+          "weight_label_bg": "linear-gradient(90deg,#00b8d4,#5858c8)",
+          "weight_text_color": "#ffffff",
+          "bag_style": "standard",
+          "rainbow_text": "",
+          "rainbow_subtext": ""
+        },
+        {
+          "id": "bag_ev9999",
+          "card": "c2_e4f5g6",
+          "brand_name": "Everyday",
+          "brand_name_line2": "",
+          "weight": "3.5G",
+          "bag_gradient": "linear-gradient(170deg,#c4a468 0%,#a07e44 40%,#8a6432 100%)",
+          "bag_width": 92,
+          "bag_height": 222,
+          "label_bg": "rgba(255,255,255,0.88)",
+          "label_text_color": "#4a2c10",
+          "weight_label_bg": "rgba(255,255,255,0.95)",
+          "weight_text_color": "#4a2c10",
+          "bag_style": "paper_texture",
+          "rainbow_text": "",
+          "rainbow_subtext": ""
+        }
+      ]
+    },
+    "bulk_section": {
+      "title": {
+        "type": "text",
+        "label": "Bulk Section Title",
+        "value": "BULK"
+      }
+    },
+    "bulk_products": {
+      "type": "collection",
+      "label": "Bulk Section Products",
+      "item_schema": {
+        "id": { "type": "text", "label": "ID" },
+        "price_qualifier": { "type": "text", "label": "Price Qualifier" },
+        "price_main": { "type": "text", "label": "Main Price (use $ prefix)" },
+        "footer_text": { "type": "text", "label": "Footer Text" },
+        "product_type": {
+          "type": "enum",
+          "label": "Product Visual Type",
+          "meta": { "options": ["bag_large_letter", "bag_text_centered", "bag_italic_text"] }
+        },
+        "bag_gradient": { "type": "text", "label": "Bag Background CSS Gradient" },
+        "brand_name": { "type": "text", "label": "Brand / Product Name Line 1" },
+        "brand_name_line2": { "type": "text", "label": "Brand / Product Name Line 2" },
+        "weight": { "type": "text", "label": "Weight Label (e.g. 28G)" },
+        "weight_label_full": { "type": "text", "label": "Full Weight Label Text on Bag (e.g. 'ZONES 28G')" },
+        "large_letter": { "type": "text", "label": "Large Background Letter (bag_large_letter type)" },
+        "large_letter_color": { "type": "text", "label": "Large Letter Color CSS" },
+        "subtext": { "type": "text", "label": "Subtext Below Brand Name" },
+        "subtext_color": { "type": "text", "label": "Subtext Color CSS" },
+        "weight_label_bg": { "type": "text", "label": "Weight Label Background CSS" },
+        "weight_text_color": { "type": "text", "label": "Weight Label Text Color" }
+      },
+      "value": [
+        {
+          "id": "bp_zones111",
+          "price_qualifier": "Only",
+          "price_main": "$79",
+          "footer_text": "Zones 28G",
+          "product_type": "bag_large_letter",
+          "bag_gradient": "linear-gradient(170deg,#0a36a0 0%,#1050bc 35%,#1868d4 65%,#0c42b0 100%)",
+          "brand_name": "ZONES",
+          "brand_name_line2": "",
+          "weight": "28G",
+          "weight_label_full": "ZONES 28G",
+          "large_letter": "Z",
+          "large_letter_color": "rgba(255,255,255,0.22)",
+          "subtext": "",
+          "subtext_color": "#a8c37e",
+          "weight_label_bg": "rgba(255,255,255,0.95)",
+          "weight_text_color": "#0a2860"
+        },
+        {
+          "id": "bp_cheap222",
+          "price_qualifier": "2 for",
+          "price_main": "$50",
+          "footer_text": "Cheap Nugz 28G",
+          "product_type": "bag_text_centered",
+          "bag_gradient": "linear-gradient(170deg,#040404 0%,#0a0a0a 35%,#161616 100%)",
+          "brand_name": "CHEAP",
+          "brand_name_line2": "NUGZ",
+          "weight": "28G",
+          "weight_label_full": "28G",
+          "large_letter": "",
+          "large_letter_color": "",
+          "subtext": "QUALITY ROOTS",
+          "subtext_color": "#a8c37e",
+          "weight_label_bg": "rgba(255,255,255,0.95)",
+          "weight_text_color": "#0a0a0a"
+        },
+        {
+          "id": "bp_secret333",
+          "price_qualifier": "5 for",
+          "price_main": "$99",
+          "footer_text": "Secret Stash 14G",
+          "product_type": "bag_italic_text",
+          "bag_gradient": "linear-gradient(170deg,#040404 0%,#0c0c0c 35%,#141414 100%)",
+          "brand_name": "Secret",
+          "brand_name_line2": "Stash",
+          "weight": "14G",
+          "weight_label_full": "14G",
+          "large_letter": "",
+          "large_letter_color": "",
+          "subtext": "",
+          "subtext_color": "",
+          "weight_label_bg": "rgba(255,255,255,0.95)",
+          "weight_text_color": "#0a0a0a"
+        }
+      ]
+    },
+    "infused_section": {
+      "title": {
+        "type": "text",
+        "label": "Infused Section Title",
+        "value": "INFUSED"
+      }
+    },
+    "infused_products": {
+      "type": "collection",
+      "label": "Infused Section Products",
+      "item_schema": {
+        "id": { "type": "text", "label": "ID" },
+        "price_qualifier": { "type": "text", "label": "Price Qualifier" },
+        "price_main": { "type": "text", "label": "Main Price (use $ prefix)" },
+        "footer_text": { "type": "text", "label": "Footer Text" },
+        "product_type": {
+          "type": "enum",
+          "label": "Product Visual Type",
+          "meta": { "options": ["bag_branded", "jar_red", "badge_circle"] }
+        },
+        "container_gradient": { "type": "text", "label": "Container/Bag Background CSS Gradient" },
+        "brand_name": { "type": "text", "label": "Brand Name (displayed above product name)" },
+        "product_name": { "type": "text", "label": "Product Name Line 1" },
+        "product_name_line2": { "type": "text", "label": "Product Name Line 2" },
+        "weight": { "type": "text", "label": "Weight Label" },
+        "weight_color": { "type": "text", "label": "Weight Color CSS (jar type)" },
+        "label_bg": { "type": "text", "label": "Inner Label Background CSS" },
+        "label_text_color": { "type": "text", "label": "Inner Label Text Color" },
+        "sub_label": { "type": "text", "label": "Sub Label Text (e.g. INFUSED)" },
+        "sub_label_color": { "type": "text", "label": "Sub Label Color CSS" },
+        "badge_accent_color": { "type": "text", "label": "Badge Accent / Divider Color (badge_circle type)" },
+        "weight_label_bg": { "type": "text", "label": "Weight Label Background CSS (bag_branded type)" },
+        "weight_text_color": { "type": "text", "label": "Weight Label Text Color (bag_branded type)" }
+      },
+      "value": [
+        {
+          "id": "ip_fc111",
+          "price_qualifier": "2 for",
+          "price_main": "$55",
+          "footer_text": "Fresh Canna Moonrocks 5G",
+          "product_type": "jar_red",
+          "container_gradient": "linear-gradient(175deg,#d00000 0%,#aa0600 40%,#840400 100%)",
+          "brand_name": "FRESH CANNA",
+          "product_name": "MOON",
+          "product_name_line2": "ROCKS",
+          "weight": "5G",
+          "weight_color": "#ffdd44",
+          "label_bg": "rgba(255,255,255,0.14)",
+          "label_text_color": "#ffffff",
+          "sub_label": "",
+          "sub_label_color": "",
+          "badge_accent_color": "",
+          "weight_label_bg": "",
+          "weight_text_color": ""
+        },
+        {
+          "id": "ip_or222",
+          "price_qualifier": "3 for",
+          "price_main": "$75",
+          "footer_text": "United Terps of America Infused 3.5G",
+          "product_type": "bag_branded",
+          "container_gradient": "linear-gradient(170deg,#b83000 0%,#d85000 35%,#f07000 65%,#aa2e00 100%)",
+          "brand_name": "UNITED TERPS",
+          "product_name": "ORANGE",
+          "product_name_line2": "RUNTZ",
+          "weight": "3.5G",
+          "weight_color": "",
+          "label_bg": "rgba(255,255,255,0.93)",
+          "label_text_color": "#7a2200",
+          "sub_label": "INFUSED",
+          "sub_label_color": "rgba(255,255,255,0.82)",
+          "badge_accent_color": "",
+          "weight_label_bg": "rgba(255,255,255,0.95)",
+          "weight_text_color": "#5a1800"
+        },
+        {
+          "id": "ip_sm333",
+          "price_qualifier": "2 for",
+          "price_main": "$50",
+          "footer_text": "Smoorhouse Infused 3.5G",
+          "product_type": "badge_circle",
+          "container_gradient": "radial-gradient(ellipse at 32% 32%,#8ed050 0%,#5aaa22 30%,#358010 58%,#1e5c06 100%)",
+          "brand_name": "SMOOR",
+          "product_name": "HOUSE",
+          "product_name_line2": "",
+          "weight": "3.5G",
+          "weight_color": "",
+          "label_bg": "rgba(255,255,255,0.5)",
+          "label_text_color": "#ffffff",
+          "sub_label": "INFUSED",
+          "sub_label_color": "#d0ff88",
+          "badge_accent_color": "rgba(255,255,255,0.5)",
+          "weight_label_bg": "",
+          "weight_text_color": ""
+        }
+      ]
+    }
+  }
+}
