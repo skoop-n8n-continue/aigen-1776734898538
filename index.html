@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920">
+  <title>Quality Roots - Flower Deals</title>
+  <style>
+    @font-face {
+      font-family: 'Geomanist';
+      src: url('assets/fonts/Geomanist-Regular.otf') format('opentype');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'Geomanist';
+      src: url('assets/fonts/Geomanist-Book.otf') format('opentype');
+      font-weight: 500;
+    }
+    @font-face {
+      font-family: 'Geomanist';
+      src: url('assets/fonts/Geomanist-Medium.otf') format('opentype');
+      font-weight: 600;
+    }
+    @font-face {
+      font-family: 'Geomanist';
+      src: url('assets/fonts/Geomanist-Ultra.otf') format('opentype');
+      font-weight: 900;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      background: #253529;
+      font-family: 'Geomanist', 'Arial Black', sans-serif;
+    }
+
+    /* ═══════════ INTRO SCREEN ═══════════ */
+    #intro-screen {
+      position: fixed;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      z-index: 50;
+      transition: opacity 0.7s ease;
+    }
+    #intro-screen.fade-out { opacity: 0; pointer-events: none; }
+    #intro-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ═══════════ DEALS SCREEN ═══════════ */
+    #deals-screen {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.6s ease 0.2s;
+    }
+    #deals-screen.visible { opacity: 1; }
+
+    #bg-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(22, 36, 24, 0.84);
+      z-index: 1;
+    }
+
+    /* Subtle cannabis leaf texture overlay */
+    .bg-texture {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      opacity: 0.07;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='%23a8c37e'%3E%3Cpath d='M90 20 C82 34 74 52 76 68 C78 82 84 90 90 94 C96 90 102 82 104 68 C106 52 98 34 90 20Z'/%3E%3Cpath d='M90 50 C78 44 64 46 56 54 C60 65 72 68 80 64Z'/%3E%3Cpath d='M90 50 C102 44 116 46 124 54 C120 65 108 68 100 64Z'/%3E%3Cpath d='M84 68 C72 66 60 72 56 82 C64 88 76 86 82 80Z'/%3E%3Cpath d='M96 68 C108 66 120 72 124 82 C116 88 104 86 98 80Z'/%3E%3Cline x1='90' y1='94' x2='90' y2='110' stroke='%23a8c37e' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    /* Content layer */
+    #content {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      padding: 0 20px;
+    }
+
+    /* ─── HEADER ─── */
+    .header {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6px;
+      flex-shrink: 0;
+    }
+    .qr-logo { height: 46px; width: auto; }
+
+    .flower-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .flower-icon { width: 44px; height: 44px; }
+    .flower-text {
+      font-weight: 900;
+      font-size: 62px;
+      color: #ffffff;
+      letter-spacing: -1.5px;
+      line-height: 1;
+    }
+
+    /* ─── GRID ─── */
+    .grid {
+      flex: 1;
+      display: flex;
+      padding-bottom: 18px;
+      gap: 0;
+    }
+
+    .col-1 {
+      width: 498px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      margin-right: 13px;
+    }
+    .col-2 {
+      width: 318px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      margin-right: 28px;
+    }
+    .col-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 2px solid rgba(168, 195, 126, 0.3);
+    }
+    .col-section + .col-section { margin-left: 13px; }
+
+    .section-header {
+      background: #253529;
+      padding: 13px 20px 11px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-weight: 900;
+      font-size: 52px;
+      color: #a8c37e;
+      letter-spacing: 5px;
+    }
+
+    .section-cards {
+      flex: 1;
+      background: #253529;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 0 8px 8px;
+    }
+
+    /* ─── PRODUCT CARD ─── */
+    .card {
+      flex: 1;
+      background: #EBE5D3;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+    /* Card body allows overflow so bags can extend beyond */
+    .card-body {
+      flex: 1;
+      position: relative;
+      padding: 16px 16px 0;
+      /* overflow visible so product images can protrude */
+    }
+
+    /* Pricing */
+    .price-qualifier {
+      display: block;
+      font-weight: 600;
+      font-size: 30px;
+      color: #253529;
+      line-height: 1.1;
+      position: relative;
+      z-index: 2;
+    }
+    .price-main {
+      display: block;
+      font-weight: 900;
+      color: #253529;
+      line-height: 0.86;
+      position: relative;
+      z-index: 2;
+    }
+    .sup { font-size: 45%; vertical-align: super; }
+
+    /* Product image area — right side of card, absolute */
+    .img-area {
+      position: absolute;
+      right: 8px;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: flex-end;
+      gap: 7px;
+      z-index: 1;
+    }
+
+    /* Card footer */
+    .card-footer {
+      background: #253529;
+      padding: 9px 14px;
+      flex-shrink: 0;
+      border-radius: 0 0 15px 15px;
+    }
+    .card-footer p {
+      font-weight: 600;
+      font-size: 14px;
+      color: #EBE5D3;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+      line-height: 1.25;
+    }
+
+    /* ─── BAG / PRODUCT IMAGE ─── */
+    .bag {
+      border-radius: 11px 11px 7px 7px;
+      box-shadow: 5px 7px 22px rgba(0,0,0,0.55);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 8px;
+      flex-shrink: 0;
+    }
+    .bag-label {
+      background: rgba(255,255,255,0.93);
+      border-radius: 5px;
+      padding: 4px 7px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* ─── SHAKE CARD special ─── */
+    .shake-blob {
+      position: absolute;
+      top: 50%;
+      left: 44%;
+      transform: translate(-50%, -52%);
+      width: 192px;
+      height: 176px;
+      background: #253529;
+      border-radius: 46% 54% 48% 52% / 50% 46% 54% 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 5;
+      box-shadow: 6px 8px 28px rgba(0,0,0,0.45);
+    }
+    .blob-from {
+      font-weight: 900;
+      font-size: 13.5px;
+      color: #EBE5D3;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      text-align: center;
+    }
+    .blob-price {
+      font-weight: 900;
+      font-size: 50px;
+      color: #EBE5D3;
+      line-height: 0.88;
+      text-align: center;
+    }
+    .blob-price sup { font-size: 48%; vertical-align: super; }
+    .blob-unit {
+      font-weight: 600;
+      font-size: 14px;
+      color: #a8c37e;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 5px;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes slideFromRight {
+      from { transform: translateX(2200px); opacity: 0; }
+      to   { transform: translateX(0);      opacity: 1; }
+    }
+    .col-1       { animation: slideFromRight 0.72s cubic-bezier(0.22,0.61,0.36,1) 0.05s both; }
+    .col-2       { animation: slideFromRight 0.72s cubic-bezier(0.22,0.61,0.36,1) 0.22s both; }
+    .col-bulk    { animation: slideFromRight 0.72s cubic-bezier(0.22,0.61,0.36,1) 0.40s both; }
+    .col-infused { animation: slideFromRight 0.72s cubic-bezier(0.22,0.61,0.36,1) 0.57s both; }
+
+    #deals-screen:not(.visible) .col-1,
+    #deals-screen:not(.visible) .col-2,
+    #deals-screen:not(.visible) .col-bulk,
+    #deals-screen:not(.visible) .col-infused {
+      animation-play-state: paused;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PHASE 1 — INTRO VIDEO
+═══════════════════════════════════════════════════════════ -->
+<div id="intro-screen">
+  <video id="intro-video" autoplay muted playsinline>
+    <source src="https://skoop-general.s3.us-east-1.amazonaws.com/1776735063166-template_blank_with_intro.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PHASE 2 — DEALS GRID
+═══════════════════════════════════════════════════════════ -->
+<div id="deals-screen">
+  <video id="bg-video" muted loop playsinline>
+    <source src="https://skoop-general.s3.us-east-1.amazonaws.com/1776735063166-template_blank_with_intro.mp4" type="video/mp4">
+  </video>
+  <div class="bg-overlay"></div>
+  <div class="bg-texture"></div>
+
+  <div id="content">
+
+    <!-- ─────────── HEADER ─────────── -->
+    <header class="header">
+      <img src="assets/logos/QR_Logos_QR_Horizontal_White.svg" class="qr-logo" alt="Quality Roots">
+
+      <div class="flower-badge">
+        <!-- Cannabis leaf icon — 7-finger style -->
+        <svg class="flower-icon" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+          <!-- Central large leaf -->
+          <path d="M25 6 C22 12 19 20 20 30 C21 36 23 41 25 43 C27 41 29 36 30 30 C31 20 28 12 25 6Z" fill="#a8c37e"/>
+          <!-- Upper-left leaf -->
+          <path d="M23 16 C19 10 12 9 8 12 C9 18 16 20 21 18Z" fill="#a8c37e"/>
+          <!-- Upper-right leaf -->
+          <path d="M27 16 C31 10 38 9 42 12 C41 18 34 20 29 18Z" fill="#a8c37e"/>
+          <!-- Mid-left leaf -->
+          <path d="M21 24 C15 20 8 22 5 27 C8 32 16 32 20 28Z" fill="#a8c37e"/>
+          <!-- Mid-right leaf -->
+          <path d="M29 24 C35 20 42 22 45 27 C42 32 34 32 30 28Z" fill="#a8c37e"/>
+          <!-- Lower-left leaf -->
+          <path d="M21 32 C14 30 8 34 7 39 C12 42 19 40 22 35Z" fill="#a8c37e"/>
+          <!-- Lower-right leaf -->
+          <path d="M29 32 C36 30 42 34 43 39 C38 42 31 40 28 35Z" fill="#a8c37e"/>
+          <!-- Stem -->
+          <line x1="25" y1="43" x2="25" y2="50" stroke="#a8c37e" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span class="flower-text">FLOWER</span>
+      </div>
+    </header>
+
+    <!-- ─────────── PRODUCT GRID ─────────── -->
+    <div class="grid">
+
+      <!-- ══════════════════════════════════
+           COL 1 — Wide Regular Deals
+      ══════════════════════════════════ -->
+      <div class="col-1">
+
+        <!-- Card: Only $12 or 7 for $77 -->
+        <div class="card">
+          <div class="card-body">
+            <div class="price-qualifier" style="font-size:28px;">Only <sup style="font-size:75%;vertical-align:super;">$</sup>12 or</div>
+            <div class="price-main" style="font-size:88px;">7 for <sup class="sup">$</sup>77</div>
+
+            <!-- Bags: Common Citizen (dark purple) + Euphoria (pink/purple) -->
+            <div class="img-area">
+              <div class="bag" style="width:106px;height:200px;background:linear-gradient(160deg,#2a0f5a,#481880,#1c0840);">
+                <div style="background:#fff;border-radius:5px;padding:4px 6px;width:100%;text-align:center;">
+                  <div style="font-size:8px;font-weight:900;color:#2a0f5a;letter-spacing:0.3px;line-height:1.3;">common</div>
+                  <div style="font-size:7px;font-weight:600;color:#481880;">citizen</div>
+                </div>
+              </div>
+              <div class="bag" style="width:94px;height:178px;background:linear-gradient(160deg,#8f1870,#be3a96,#d870b8);">
+                <div style="background:rgba(255,255,255,0.92);border-radius:5px;padding:4px 6px;width:100%;text-align:center;">
+                  <div style="font-size:8px;font-weight:900;color:#6a0f52;letter-spacing:0.3px;">EUPHORIA</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer"><p>Common Citizen 3.5G &amp; Euphoria 3.5G</p></div>
+        </div>
+
+        <!-- Card: 2 for $48 -->
+        <div class="card">
+          <div class="card-body">
+            <div class="price-qualifier">2 for</div>
+            <div class="price-main" style="font-size:110px;"><sup class="sup">$</sup>48</div>
+            <!-- Michigrown (light blue) + ProGro (dark/gold) -->
+            <div class="img-area">
+              <div class="bag" style="width:112px;height:198px;background:linear-gradient(160deg,#7fa8be,#5c8fa8,#3d6e85);">
+                <div style="background:rgba(255,255,255,0.9);border-radius:5px;padding:4px 7px;width:100%;text-align:center;">
+                  <div style="font-size:8.5px;font-weight:900;color:#253529;text-transform:uppercase;letter-spacing:0.5px;line-height:1.3;">MICHI<br>GROWN</div>
+                </div>
+              </div>
+              <div class="bag" style="width:100px;height:178px;background:linear-gradient(160deg,#0e0e0e,#1c1c1c,#181818);">
+                <div style="background:#c8a020;border-radius:5px;padding:5px 8px;width:100%;text-align:center;">
+                  <div style="font-size:9px;font-weight:900;color:#000;letter-spacing:1px;text-transform:uppercase;">PROGRO</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer"><p>Michigrown 3.5G &amp; ProGro 3.5G</p></div>
+        </div>
+
+        <!-- Card: 3 for $42 -->
+        <div class="card">
+          <div class="card-body">
+            <div class="price-qualifier">3 for</div>
+            <div class="price-main" style="font-size:110px;"><sup class="sup">$</sup>42</div>
+            <!-- Grown Rogue (dark navy) + Wise Guys (colorful) -->
+            <div class="img-area">
+              <div class="bag" style="width:108px;height:194px;background:linear-gradient(160deg,#0c1b2c,#162a44,#1e385c);">
+                <div style="background:rgba(255,255,255,0.9);border-radius:5px;padding:4px 7px;width:100%;text-align:center;">
+                  <div style="font-size:8.5px;font-weight:900;color:#0c1b2c;text-transform:uppercase;letter-spacing:0.3px;line-height:1.3;">GROWN<br>ROGUE</div>
+                </div>
+              </div>
+              <div class="bag" style="width:96px;height:172px;background:linear-gradient(160deg,#cc2566,#e04890,#f070b5);">
+                <div style="background:rgba(255,255,255,0.9);border-radius:5px;padding:4px 6px;width:100%;text-align:center;">
+                  <div style="font-size:8.5px;font-weight:900;color:#881544;text-transform:uppercase;">WISE GUYS</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer"><p>Wise Guys 3.5G &amp; Grown Rogue 3.5G</p></div>
+        </div>
+
+      </div><!-- /col-1 -->
+
+      <!-- ══════════════════════════════════
+           COL 2 — Narrow Special Deals
+      ══════════════════════════════════ -->
+      <div class="col-2">
+
+        <!-- Card: Shake $12–$30 (special sticker) -->
+        <div class="card">
+          <div class="card-body" style="overflow:visible;">
+            <!-- Herb pile — right side, overflows above card -->
+            <svg viewBox="0 0 200 230" style="position:absolute;right:-18px;top:-22px;width:190px;height:230px;z-index:1;" xmlns="http://www.w3.org/2000/svg">
+              <!-- Herb mass -->
+              <ellipse cx="110" cy="150" rx="75" ry="52" fill="#5c4a1a" opacity="0.55"/>
+              <ellipse cx="118" cy="155" rx="62" ry="40" fill="#7a6022" opacity="0.7"/>
+              <ellipse cx="105" cy="158" rx="68" ry="44" fill="#6b5520" opacity="0.5"/>
+              <!-- Loose buds -->
+              <circle cx="95" cy="145" r="9"  fill="#8b7330" opacity="0.65"/>
+              <circle cx="125" cy="140" r="7"  fill="#7a6328" opacity="0.55"/>
+              <circle cx="142" cy="152" r="10" fill="#9a8035" opacity="0.6"/>
+              <circle cx="108" cy="162" r="8"  fill="#a8913c" opacity="0.55"/>
+              <circle cx="158" cy="145" r="6"  fill="#6e5520" opacity="0.45"/>
+              <circle cx="85"  cy="158" r="8"  fill="#8a7130" opacity="0.55"/>
+              <!-- Stalks -->
+              <path d="M100 128 C105 105 115 88 120 68" stroke="#5a8a3a" stroke-width="2.5" fill="none" opacity="0.55"/>
+              <path d="M118 122 C125 100 132 82 138 60" stroke="#4a7a2a" stroke-width="2"   fill="none" opacity="0.45"/>
+              <path d="M114 125 C108 102 105 84 102 62" stroke="#6a9a4a" stroke-width="2"   fill="none" opacity="0.45"/>
+              <!-- Leaf clumps -->
+              <ellipse cx="120" cy="70"  rx="14" ry="7"  fill="#5a8a3a" opacity="0.65" transform="rotate(-20 120 70)"/>
+              <ellipse cx="138" cy="62"  rx="12" ry="6"  fill="#4a7a2a" opacity="0.55" transform="rotate(25 138 62)"/>
+              <ellipse cx="102" cy="64"  rx="12" ry="6"  fill="#6a9a4a" opacity="0.55" transform="rotate(-15 102 64)"/>
+              <!-- Small scattered pieces -->
+              <ellipse cx="80"  cy="140" rx="6"  ry="4"  fill="#8a7130" opacity="0.45" transform="rotate(30 80 140)"/>
+              <ellipse cx="155" cy="158" rx="5"  ry="3"  fill="#7a6320" opacity="0.4"  transform="rotate(-20 155 158)"/>
+            </svg>
+            <!-- Dark oval sticker -->
+            <div class="shake-blob">
+              <div class="blob-from">SHAKE FROM</div>
+              <div class="blob-price"><sup>$</sup>12–<sup>$</sup>30</div>
+              <div class="blob-unit">PER OZ</div>
+            </div>
+          </div>
+          <div class="card-footer"><p>Shake — Various Strains</p></div>
+        </div>
+
+        <!-- Card: 50% Off – Seed Junky -->
+        <div class="card">
+          <div class="card-body">
+            <div class="price-main" style="font-size:92px;line-height:0.9;">50%<br>Off</div>
+            <!-- Seed Junky bag (dark/graffiti) -->
+            <div class="img-area" style="right:6px;">
+              <div class="bag" style="width:130px;height:192px;background:linear-gradient(160deg,#0e0e0e,#1a1a1a);">
+                <div style="background:linear-gradient(90deg,#ff3300,#ff7700,#ffcc00,#00cc44,#0055ff,#9900ff);border-radius:5px;padding:5px 8px;width:100%;">
+                  <div style="font-size:8.5px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.5px;text-shadow:1px 1px 3px rgba(0,0,0,0.8);text-align:center;">SEED JUNKY</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer"><p>Seed Junky 3.5G</p></div>
+        </div>
+
+        <!-- Card: 2 for $25 – Glorious & Everyday -->
+        <div class="card">
+          <div class="card-body">
+            <div class="price-qualifier">2 for</div>
+            <div class="price-main" style="font-size:110px;"><sup class="sup">$</sup>25</div>
+            <div class="img-area" style="right:6px;">
+              <!-- Glorious (dark/teal) -->
+              <div class="bag" style="width:106px;height:186px;background:linear-gradient(160deg,#080808,#141414);">
+                <div style="background:linear-gradient(90deg,#00bcd4,#5c6bc0);border-radius:5px;padding:5px 7px;width:100%;text-align:center;">
+                  <div style="font-size:8px;font-weight:900;color:#fff;letter-spacing:0.3px;text-transform:uppercase;">Glorious</div>
+                </div>
+              </div>
+              <!-- Everyday (kraft tan) -->
+              <div class="bag" style="width:94px;height:166px;background:linear-gradient(160deg,#c2a070,#a87848,#8a5c30);">
+                <div style="background:rgba(255,255,255,0.92);border-radius:5px;padding:4px 6px;width:100%;text-align:center;">
+                  <div style="font-size:8px;font-weight:700;color:#4a2c10;text-transform:uppercase;letter-spacing:0.3px;">Everyday</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer"><p>Glorious 3.5G &amp; Everyday 3.5G</p></div>
+        </div>
+
+      </div><!-- /col-2 -->
+
+      <!-- ══════════════════════════════════
+           COL 3 — BULK Section
+      ══════════════════════════════════ -->
+      <div class="col-section col-bulk">
+        <div class="section-header"><h2>BULK</h2></div>
+        <div class="section-cards">
+
+          <!-- Zones 28G -->
+          <div class="card">
+            <div class="card-body">
+              <div class="price-qualifier">Only</div>
+              <div class="price-main" style="font-size:110px;"><sup class="sup">$</sup>79</div>
+              <div class="img-area">
+                <div class="bag" style="width:140px;height:205px;background:linear-gradient(160deg,#0e42b0,#1254c8,#1a6ad8);justify-content:center;align-items:center;">
+                  <span style="font-size:100px;font-weight:900;color:rgba(255,255,255,0.22);line-height:1;display:block;">Z</span>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer"><p>Zones 28G</p></div>
+          </div>
+
+          <!-- Cheap Nugz 28G -->
+          <div class="card">
+            <div class="card-body">
+              <div class="price-qualifier">2 for</div>
+              <div class="price-main" style="font-size:110px;"><sup class="sup">$</sup>50</div>
+              <div class="img-area">
+                <div class="bag" style="width:142px;height:200px;background:linear-gradient(160deg,#060606,#101010,#181818);justify-content:center;align-items:center;">
+                  <div style="text-align:center;">
+                    <div style="font-size:14px;font-weight:900;color:#EBE5D3;text-transform:uppercase;letter-spacing:0.5px;line-height:1.3;">CHEAP<br>NUGZ</div>
+                    <div style="font-size:8px;color:#a8c37e;text-transform:uppercase;letter-spacing:1.2px;margin-top:6px;">QUALITY ROOTS</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer"><p>Cheap Nugz 28G</p></div>
+          </div>
+
+          <!-- Secret Stash 14G -->
+          <div class="card">
+            <div class="card-body">
+              <div class="price-qualifier">5 for</div>
+              <div class="price-main" style="font-size:110px;"><sup class="sup">$</sup>99</div>
+              <div class="img-area">
+                <div class="bag" style="width:142px;height:200px;background:linear-gradient(160deg,#090909,#131313);justify-content:center;align-items:center;">
+                  <div style="font-size:18px;font-style:italic;font-weight:600;color:#EBE5D3;text-align:center;font-family:Georgia,serif;line-height:1.4;letter-spacing:0.3px;">Secret<br>Stash</div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer"><p>Secret Stash 14G</p></div>
+          </div>
+
+        </div>
+      </div><!-- /col-bulk -->
+
+      <!-- ══════════════════════════════════
+           COL 4 — INFUSED Section
+      ══════════════════════════════════ -->
+      <div class="col-section col-infused">
+        <div class="section-header"><h2>INFUSED</h2></div>
+        <div class="section-cards">
+
+          <!-- Fresh Canna Moonrocks 5G -->
+          <div class="card">
+            <div class="card-body">
+              <div class="price-qualifier">2 for</div>
+              <div class="price-main" style="font-size:110px;"><sup class="sup">$</sup>55</div>
+              <div class="img-area">
+                <!-- Jar (round) -->
+                <div style="width:130px;height:200px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;flex-shrink:0;">
+                  <div style="width:118px;height:24px;background:linear-gradient(90deg,#aa0000,#cc0000);border-radius:7px 7px 0 0;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <div style="font-size:7px;font-weight:900;color:#fff;letter-spacing:0.8px;text-transform:uppercase;">FRESH CANNA</div>
+                  </div>
+                  <div style="width:118px;flex:1;background:linear-gradient(160deg,#cc0000,#a81000,#800a00);border-radius:0 0 14px 14px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:10px;box-shadow:5px 6px 20px rgba(0,0,0,0.6);">
+                    <div style="background:rgba(255,255,255,0.18);border-radius:10px;padding:8px 10px;width:100%;text-align:center;">
+                      <div style="font-size:11px;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.5px;line-height:1.4;">MOON<br>ROCKS</div>
+                      <div style="font-size:9px;color:#ffdd44;margin-top:3px;font-weight:700;">5G</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer"><p>Fresh Canna Moonrocks 5G</p></div>
+          </div>
+
+          <!-- United Terps / Orange Runtz 3.5G -->
+          <div class="card">
+            <div class="card-body">
+              <div class="price-qualifier">3 for</div>
+              <div class="price-main" style="font-size:110px;"><sup class="sup">$</sup>75</div>
+              <div class="img-area">
+                <div class="bag" style="width:136px;height:200px;background:linear-gradient(160deg,#c84000,#e86000,#f88000);">
+                  <div style="background:rgba(255,255,255,0.92);border-radius:5px;padding:6px 10px;width:100%;text-align:center;">
+                    <div style="font-size:11px;font-weight:900;color:#7a2a00;text-transform:uppercase;letter-spacing:0.5px;line-height:1.3;">ORANGE<br>RUNTZ</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer" style="padding:9px 10px;"><p>United Terps of America Infused 3.5G</p></div>
+          </div>
+
+          <!-- Smoorhouse Infused 3.5G -->
+          <div class="card">
+            <div class="card-body">
+              <div class="price-qualifier">2 for</div>
+              <div class="price-main" style="font-size:110px;"><sup class="sup">$</sup>50</div>
+              <div class="img-area">
+                <!-- Round sticker badge -->
+                <div style="width:148px;height:200px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <div style="width:148px;height:148px;background:radial-gradient(ellipse at 32% 32%,#82c45a,#48a030,#2a7a18,#1a5a0c);border-radius:40% 60% 52% 48% / 45% 42% 58% 55%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:16px;box-shadow:5px 7px 22px rgba(0,0,0,0.6);">
+                    <div style="font-size:13px;font-weight:900;color:#fff;text-align:center;text-transform:uppercase;letter-spacing:0.5px;line-height:1.4;text-shadow:1px 2px 5px rgba(0,0,0,0.7);">SMOOR<br>HOUSE</div>
+                    <div style="font-size:9px;color:#ccff88;text-transform:uppercase;letter-spacing:1px;margin-top:5px;font-weight:600;">INFUSED</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer"><p>Smoorhouse Infused 3.5G</p></div>
+          </div>
+
+        </div>
+      </div><!-- /col-infused -->
+
+    </div><!-- /grid -->
+  </div><!-- /content -->
+</div><!-- /deals-screen -->
+
+<script>
+  const introScreen = document.getElementById('intro-screen');
+  const introVideo  = document.getElementById('intro-video');
+  const dealsScreen = document.getElementById('deals-screen');
+  const bgVideo     = document.getElementById('bg-video');
+
+  let transitioned = false;
+
+  function showDeals() {
+    if (transitioned) return;
+    transitioned = true;
+
+    introScreen.classList.add('fade-out');
+    dealsScreen.classList.add('visible');
+
+    // Set bg video to the "template background" portion (skip past the intro animation)
+    bgVideo.currentTime = 5.5;
+    bgVideo.play().catch(() => {});
+
+    setTimeout(() => { introScreen.style.display = 'none'; }, 900);
+  }
+
+  // Trigger near end of intro animation (~4.8s)
+  introVideo.addEventListener('timeupdate', function() {
+    if (introVideo.currentTime >= 4.8) showDeals();
+  });
+
+  introVideo.addEventListener('ended', showDeals);
+  introVideo.addEventListener('error',  showDeals);
+
+  // Safety fallback
+  setTimeout(showDeals, 10000);
+</script>
+</body>
+</html>
