@@ -46,7 +46,7 @@
       "card_bg_color": {
         "type": "color",
         "label": "Card Background Color",
-        "value": "#EBE5D3"
+        "value": "#96bccf"
       },
       "card_footer_bg_color": {
         "type": "color",
