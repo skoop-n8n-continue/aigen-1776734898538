@@ -98,7 +98,7 @@
       "category_label": {
         "type": "text",
         "label": "Category Label (e.g. FLOWER)",
-        "value": "Pre Rolls"
+        "value": "Pre Rolls."
       },
       "show_leaf_icon": {
         "type": "boolean",
